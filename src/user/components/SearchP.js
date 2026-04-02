@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Parking_info from "../../Parking_info.json";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import PriceList from "./PriceList";
 
 const SearchP = ()=>{
     
@@ -65,6 +66,7 @@ const SearchP = ()=>{
                 </ul>
                 
             </div>
+
         </div>
     )
 }

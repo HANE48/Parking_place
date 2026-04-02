@@ -6,11 +6,11 @@ import SearchP from './user/components/SearchP.js';
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <div className="App">
-        <SearchP/>
+        <User_main/>
       </div>
-    </BrowserRouter>
+    
   );
 }
 

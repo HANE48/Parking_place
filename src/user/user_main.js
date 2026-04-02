@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SearchP from "./components/SearchP";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserMain from "./components/UserMain";
+import PriceList from "./components/PriceList";
 
 
 const User_main = ()=>{
@@ -9,11 +10,10 @@ const User_main = ()=>{
     return(
     <div>
         <BrowserRouter>
-            
             <div className="App">
                 <Routes>
-                <Route path='/' element={<UserMain/>}/>
-                <Route path='/Search/:ADDR' element={<SearchP/>}/>
+                <Route path='/' element={<SearchP/>}/>
+                
                 </Routes>
             </div>
         </BrowserRouter>
