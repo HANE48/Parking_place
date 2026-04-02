@@ -33,10 +33,10 @@ const SearchP = ()=>{
 
             return(
                 <Link>
-                    <div>
+                    <li>
                         {res.pklt_nm}<br/>
                         주차가능 수 : {availableLots}
-                    </div>
+                    </li>
                 </Link>
             )
     } ) 
@@ -59,8 +59,11 @@ const SearchP = ()=>{
             </div>
 
             <div>
-                <h5>결과 리스트 출력</h5>
-                {showList}
+                
+                <ul>
+                    {showList}
+                </ul>
+                
             </div>
         </div>
     )

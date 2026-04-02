@@ -9,12 +9,13 @@ const User_main = ()=>{
     return(
     <div>
         <BrowserRouter>
-        <div className="App">
-            <Routes>
-            <Route path='/' element={<UserMain/>}/>
-            <Route path='/Search/:ADDR' element={<SearchP/>}/>
-            </Routes>
-        </div>
+            
+            <div className="App">
+                <Routes>
+                <Route path='/' element={<UserMain/>}/>
+                <Route path='/Search/:ADDR' element={<SearchP/>}/>
+                </Routes>
+            </div>
         </BrowserRouter>
 
 
