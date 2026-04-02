@@ -1,15 +1,3 @@
-관리자 화면
-
-[레이아웃 | 데이터/로직]
-★승연_레이아웃
-: 사이드바, 화면 전환 로직, 전체 레이아웃
-
-★효경_데이터/로직(내용담당)
-: StatCards : 메뉴바 클릭시 나오는 데이터 계산, 대시보드: ParkingTable(주차 들어왔을 때 +,- 버튼), (영업시작/영업종료 버튼)
-
-
-
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
