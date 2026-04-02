@@ -1,0 +1,44 @@
+/* 레이아웃 */
+.manager-layout {
+  display: flex;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 250px;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column; 
+  /* 세로로 줄세우기 */
+}
+
+.sidebar-logo {
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.sidebar-nav li {
+  padding: 15px 25px;
+  cursor: pointer;
+  display: flex; 
+  align-items: center;
+  transition: 0.3s;
+}
+
+.sidebar-nav li:hover {
+  background-color: #334155;
+}
+
+.sidebar-nav li.active {
+  background-color: #3b82f6;
+  font-weight: bold;
+}
