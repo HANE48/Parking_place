@@ -1,3 +1,17 @@
+**가격순 리스트
+**규모순 리스트
+**남은 주차공간 많은순 리스트
+**주차장 클릭 후 상세정보 
+: 1) 주차장 이름
+  2) 주소
+  3) 주차장 종류
+  4) 운영시간
+  5) 월 정기권 (일단! 주차장문의로!)
+  6) 일 최대 요금
+  7) 기본 주차 시간(분)+ 기본 추가 시간(분) + 금액
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
