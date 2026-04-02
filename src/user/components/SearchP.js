@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Parking_info from "../../Parking_info.json";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import PriceList from "./PriceList";
 
 const SearchP = ()=>{
     
@@ -32,12 +33,14 @@ const SearchP = ()=>{
         }
 
             return(
+                <ul>
                 <Link>
                     <li>
                         {res.pklt_nm}<br/>
                         주차가능 수 : {availableLots}
                     </li>
                 </Link>
+                </ul>
             )
     } ) 
 
@@ -53,16 +56,18 @@ const SearchP = ()=>{
             </div>
 
             <div>
-                <button>가격순</button>
-                <button>주차공간순</button>
-                <button>주차장규모순</button>
+                <button> <Link to="/price">가격순</Link></button>
+                <button> <Link to="/space">주차공간순</Link></button>
+                <button> <Link to="/size">주차장규모순</Link></button>
             </div>
 
             <div>
-                
-                <ul>
-                    {showList}
-                </ul>
+                <Routes>
+                    <Route path="/price" element={<PriceList list={list}/>} />
+                    <Route path="/space" element={<div>주차공간순</div>} />
+                    <Route path="/size" element={<div>주차장규모순</div>} />
+                    <Route path="/" element={showList} />
+                </Routes>
                 
             </div>
         </div>
