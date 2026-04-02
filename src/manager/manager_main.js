@@ -3,7 +3,7 @@ import './manager_main.css';
 import Sidebar from './Sidebar'; 
 
 function ManagerMain() {
- //초기값 일단 대시보드로 ++ 관리자 로그인 페이지 내일 만들기 
+
   const [currentView, setCurrentView] = useState('dashboard');
 
   return (
@@ -60,6 +60,7 @@ function ManagerMain() {
           )}
         </section>
       </main>
+
     </div>
   );
 }
