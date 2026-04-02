@@ -9,7 +9,7 @@ function Sidebar(props) {
     <aside className="sidebar">
       <div className="sidebar-logo">
         <h2>ADMIN</h2>
-        <p>Parking System이여</p>
+        <p>Parking System</p>
       </div>
 
       <nav className="sidebar-nav">
@@ -46,8 +46,8 @@ function Sidebar(props) {
             className={currentView === 'settings' ? 'nav-item active' : 'nav-item'}
             onClick={function() { setCurrentView('settings'); }}
           >
-            <span className="nav-icon">⚙️</span>
-            <span className="nav-label">시스템 설정</span>
+            <span className="nav-icon">🕒</span>
+            <span className="nav-label">운영시간</span>
           </li>
 
           

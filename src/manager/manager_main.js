@@ -21,7 +21,7 @@ function ManagerMain() {
           
           {currentView === 'dashboard' && (
             <div className="content-box">
-              <h3>📊 종합 대시보드</h3>
+              <h3>종합 대시보드</h3>
               <p>실시간 주차 현황자리</p>
               <div className="dummy-box"></div>
             </div>
@@ -29,29 +29,32 @@ function ManagerMain() {
 
           {currentView === 'list' && (
             <div className="content-box">
-              <h3>🚗 주차장 목록</h3>
-              <p>등록된 모든 주차장의 상세 정보를 표로 보여줄 자리</p>
-              <div className="dummy-table">주차장 Table</div>
+              <h3>주차장 목록</h3>
+              <p>주차장이름, 현재주차현황, 위치를 중심으로 리스트 만들고 
+                만차인곳은 빨간색?으로 표시하는 로직 만들면 좋을 것 같음
+              </p>
             </div>
           )}
 
           {currentView === 'price' && (
             <div className="content-box">
-              <h3>💳 요금 관리</h3>
-              <p>기본 요금 및 추가 요금 정책을 설정하는 화면</p>
+              <h3>요금 관리</h3>
+              <p>기본 요금 및 추가 요금 설정. 수정 버튼 필요할듯</p>
             </div>
           )}
 
           {currentView === 'settings' && (
             <div className="content-box">
-              <h3>⚙️ 시스템 설정</h3>
-              <p>알림 설정 및 시스템 환경을 관리</p>
+              <h3>운영 시간</h3>
+              <p>각 주차장이 언제 문을 열고 닫는지 확인하는 곳
+                운영시간(평일/주말/공휴일)데이터 활용(24시간운영인지 아닌지 필터링해서 보여주면 좋을듯)
+              </p>
             </div>
           )}
 
           {currentView === 'admin' && (
             <div className="content-box">
-              <h3>👤 관리자 정보</h3>
+              <h3>관리자 정보</h3>
               <p>내 정보 수정 및 비밀번호 변경 화면</p>
             </div>
           )}
