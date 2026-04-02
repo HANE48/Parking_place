@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Parking_info from "../../Parking_info.json";
+import { Link } from "react-router-dom";
 
 const SearchP = ()=>{
     
     const [addr, setAddr] = useState('')
 
-    //원하는 지역의 주차장 리스트 저장
+    //원하는 지역의 주차장 리스트 저장하는 list변수
     const [list, setList] = useState([])
     
+    //list변수에 검색한 결과를 배열로 저장
     const checkList = ()=>{
         if(!addr.trim()){
             return;
@@ -17,6 +19,27 @@ const SearchP = ()=>{
         setList(filtered)
 
     }
+
+    
+
+    //검색 결과 출력하는 메서드
+    const showList = list.map( (res)=>{
+        let availableLots = Number(res.tpkct)-Number(res.now_prk_vhcl_cnt);
+
+        //availableLots(주차가능수)가 0보다 작으면 0으로 표시
+        if( availableLots <= 0 ){
+            availableLots = 0
+        }
+
+            return(
+                <Link>
+                    <div>
+                        {res.pklt_nm}<br/>
+                        주차가능 수 : {availableLots}
+                    </div>
+                </Link>
+            )
+    } ) 
 
     return(
         <div>
@@ -29,17 +52,15 @@ const SearchP = ()=>{
                 <button onClick={checkList}>찾기</button>
             </div>
 
-            <div></div>
+            <div>
+                <button>가격순</button>
+                <button>주차공간순</button>
+                <button>주차장규모순</button>
+            </div>
 
             <div>
-                리스트 출력
-                {
-                    list.map( (res)=>( 
-                        <div>
-                            {res.addr}
-                        </div>
-                     ) )
-                }
+                <h5>결과 리스트 출력</h5>
+                {showList}
             </div>
         </div>
     )
