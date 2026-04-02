@@ -1,11 +1,12 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Parking_info from "../../Parking_info.json";
 
 const SearchP = ()=>{
     
     const [addr, setAddr] = useState('')
-    const [result, setResult] = useState([])
+
+    //원하는 지역의 주차장 리스트 저장
+    const [list, setList] = useState([])
     
     const checkList = ()=>{
         if(!addr.trim()){
@@ -13,7 +14,7 @@ const SearchP = ()=>{
         }
         const filtered = Parking_info.DATA.filter( (item)=> item.addr.includes(addr) )
 
-        setResult(filtered)
+        setList(filtered)
 
     }
 
@@ -25,19 +26,20 @@ const SearchP = ()=>{
                         placeholder="지역명을 입력하세요(구/도로명)"/>
             </div>
             <div>
-                <button>찾기</button>
+                <button onClick={checkList}>찾기</button>
             </div>
 
             <div></div>
 
             <div>
                 리스트 출력
-                console.log(result)
-                {/* {
-                    result.map( (res)=>( 
-                        <div>{res.}</div>
+                {
+                    list.map( (res)=>( 
+                        <div>
+                            {res.addr}
+                        </div>
                      ) )
-                } */}
+                }
             </div>
         </div>
     )
