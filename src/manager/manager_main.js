@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './manager_main.css';
-import Sidebar from './Sidebar'; 
-import {Routes, Route} from 'react-router-dom';
-import ParkingTable from './ParkingTable';
+import Sidebar from './Sidebar.js'; 
+import ParkingTable from './ParkingTable.js';
+import ParkingPriceTable from './ParkingPriceTable.js';
+import ParkingData from './ParkingData';
 
 // 관리자창 --> 로그인 기능과 로그인시 관리시스템으로 넘어가게변경
 
@@ -23,7 +24,8 @@ function ManagerMain() {
         </header>
 
         <section className="view-area">
-          {/* 이 부분은 Routes로 감싸서 Route로 나오게 변경 */}
+          
+         
           {currentView === 'dashboard' && (
             <div className="content-box">
               <h3>종합 대시보드</h3>
