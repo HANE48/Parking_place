@@ -28,17 +28,17 @@ const ParkingTable = ({ data, setData }) => {
         }
     };
 
-    let DayOpenHr = data[0].wd_oper_bgng_tm.slice(0, 2);
-    let DayOpenMin = data[0].wd_oper_bgng_tm.slice(2, 4);
+    // let DayOpenHr = data[0].wd_oper_bgng_tm.slice(0, 2);
+    // let DayOpenMin = data[0].wd_oper_bgng_tm.slice(2, 4);
 
-    let DayEndHr = data[0].wd_oper_end_tm.slice(0, 2);
-    let DayEndMin = data[0].wd_oper_end_tm.slice(2, 4);
+    // let DayEndHr = data[0].wd_oper_end_tm.slice(0, 2);
+    // let DayEndMin = data[0].wd_oper_end_tm.slice(2, 4);
 
-    let WeekOpenHr = data[0].we_oper_bgng_tm.slice(0, 2);
-    let WeekOpenMin = data[0].we_oper_bgng_tm.slice(2, 4);
+    // let WeekOpenHr = data[0].we_oper_bgng_tm.slice(0, 2);
+    // let WeekOpenMin = data[0].we_oper_bgng_tm.slice(2, 4);
 
-    let WeekEndHr = data[0].we_oper_end_tm.slice(0, 2);
-    let WeekEndMin = data[0].we_oper_end_tm.slice(2, 4);
+    // let WeekEndHr = data[0].we_oper_end_tm.slice(0, 2);
+    // let WeekEndMin = data[0].we_oper_end_tm.slice(2, 4);
 
     return (
         <table>
@@ -47,9 +47,9 @@ const ParkingTable = ({ data, setData }) => {
                     <th>주차장명</th>
                     <th>현황 (현재/전체)</th>
                     <th>입/출차 관리</th>
-                    <th>운영시간(평일)</th>
+                    {/* <th>운영시간(평일)</th>
                     <th>운영시간(주말)</th>
-                    <th>기본요금</th>
+                    <th>기본요금</th> */}
                 </tr>
             </thead>
 
@@ -63,9 +63,9 @@ const ParkingTable = ({ data, setData }) => {
                             <button onClick={() => handleIncrease(index)}>+</button>
                             <button onClick={() => handleDecrease(index)}>-</button>
                         </td>
-                        <td>{DayOpenHr}:{DayOpenMin} ~ {DayEndHr}:{DayEndMin}</td>
+                        {/* <td>{DayOpenHr}:{DayOpenMin} ~ {DayEndHr}:{DayEndMin}</td>
                         <td>{WeekOpenHr}:{WeekOpenMin} ~ {WeekEndHr}:{WeekEndMin}</td>
-                        <td>{parking.bsc_prk_crg}원</td>
+                        <td>{parking.bsc_prk_crg}원</td> */}
                     </tr>
                 ))}
             </tbody>
