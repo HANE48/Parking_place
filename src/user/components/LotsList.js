@@ -21,6 +21,7 @@ const LotsList = ({list})=>{
                         <Link to={'/detail/' + res.pklt_cd}>
                             <li>
                                 {res.pklt_nm}<br/>
+                                {res.addr}<br/>
                                 주차가능 수 : {availableLots}
                             </li>
                         </Link>
