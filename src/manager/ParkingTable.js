@@ -7,7 +7,7 @@ const ParkingTable = () => {
     const [data, setData] = useState(ParkingData.DATA.filter
         (parking => parking.pklt_cd === id)
     );
-    console.log(data);
+
     // ParkingData.DATA로 접근해서 json파일의 내용을 사용
     //[+]버튼 누르면 실행되는 함수
     const handleIncrease = (index) => {
@@ -27,17 +27,17 @@ const ParkingTable = () => {
         }
     };
 
-    let DayOpenHr = data[0].wd_oper_bgng_tm.slice(0,2);
-    let DayOpenMin = data[0].wd_oper_bgng_tm.slice(2,4);
+    let DayOpenHr = data[0].wd_oper_bgng_tm.slice(0, 2);
+    let DayOpenMin = data[0].wd_oper_bgng_tm.slice(2, 4);
 
-    let DayEndHr = data[0].wd_oper_end_tm.slice(0,2);
-    let DayEndMin = data[0].wd_oper_end_tm.slice(2,4);
+    let DayEndHr = data[0].wd_oper_end_tm.slice(0, 2);
+    let DayEndMin = data[0].wd_oper_end_tm.slice(2, 4);
 
-    let WeekOpenHr = data[0].we_oper_bgng_tm.slice(0,2);
-    let WeekOpenMin = data[0].we_oper_bgng_tm.slice(2,4);
+    let WeekOpenHr = data[0].we_oper_bgng_tm.slice(0, 2);
+    let WeekOpenMin = data[0].we_oper_bgng_tm.slice(2, 4);
 
-    let WeekEndHr = data[0].we_oper_end_tm.slice(0,2);
-    let WeekEndMin = data[0].we_oper_end_tm.slice(2,4);
+    let WeekEndHr = data[0].we_oper_end_tm.slice(0, 2);
+    let WeekEndMin = data[0].we_oper_end_tm.slice(2, 4);
 
     return (
         <table>

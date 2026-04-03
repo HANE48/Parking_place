@@ -8,8 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <ManagerMain /> */}
-        <ParkingTable/>
+        <ManagerMain />
       </div>
     </BrowserRouter>
   );
