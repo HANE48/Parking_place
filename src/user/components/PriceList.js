@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PriceList = ({list})=>{
     
@@ -27,14 +28,15 @@ console.log("무료 주차장 리스트:", freeLots);
                     const freeP = Number(item.bsc_prk_crg) === 0 || item.pay_yn_nm === '무료'
 
                     return(
+                        <Link to={'/detail/' + item.pklt_cd }>
+                            <li key={index}>
+                            {item.pklt_nm} <br/>
+                            {item.addr} <br/>
 
-                    <li key={index}>
-                      {item.pklt_nm} <br/>
-                      {item.addr} <br/>
-
-                      {freeP ? ( "무료 주차장" ) : <span>기본시간: {item.bsc_prk_hr}분, {item.bsc_prk_crg}원</span>}
-                      
-                    </li> 
+                            {freeP ? ( "무료 주차장" ) : <span>기본시간: {item.bsc_prk_hr}분, {item.bsc_prk_crg}원</span>}
+                            
+                            </li> 
+                        </Link>
                      )                   
                    }
                  )
