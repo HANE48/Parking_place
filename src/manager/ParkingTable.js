@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ParkingData from './ParkingData';
 
-const ParkingTable = ({data, setData}) => {
+const ParkingTable = () => {
     // 추후 id만 인자로 받아서 진행하게 변경
-    // const id = 171730;
-    // const [data, setData] = useState(ParkingData.DATA.filter
-    //     (parking => parking.pklt_cd === id)
-    // );
+    const id = 171730;
+    const [data, setData] = useState(ParkingData.DATA.filter
+        (parking => parking.pklt_cd === id)
+    );
 
     // ParkingData.DATA로 접근해서 json파일의 내용을 사용
     //[+]버튼 누르면 실행되는 함수
