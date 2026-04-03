@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import ParkingData from './ParkingData';
 
 const ParkingTable = () => {
+    // 추후 id만 인자로 받아서 진행하게 변경
     const id = 171730;
     const [data, setData] = useState(ParkingData.DATA.filter
         (parking => parking.pklt_cd === id)
     );
+    console.log(data);
     // ParkingData.DATA로 접근해서 json파일의 내용을 사용
     //[+]버튼 누르면 실행되는 함수
     const handleIncrease = (index) => {
@@ -24,6 +26,12 @@ const ParkingTable = () => {
             setData(newData);
         }
     };
+
+    let openHr = data[0].we_oper_bgng_tm.slice(0,2);
+    let openMin = data[0].we_oper_bgng_tm.slice(2,4);
+
+    let endHr = data[0].wd_oper_end_tm.slice(0,2);
+    let endMin = data[0].wd_oper_end_tm.slice(2,4);
 
     return (
         <table>
@@ -47,7 +55,7 @@ const ParkingTable = () => {
                             <button onClick={() => handleIncrease(index)}>+</button>
                             <button onClick={() => handleDecrease(index)}>-</button>
                         </td>
-                        <td>{parking.wd_oper_bgng_tm} ~ {parking.wd_oper_end_tm}</td>
+                        <td>{openHr}:{openMin} ~ {endHr}:{endMin}</td>
                         <td>{parking.bsc_prk_crg}원</td>
                     </tr>
                 ))}
