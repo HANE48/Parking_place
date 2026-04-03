@@ -18,7 +18,7 @@ const LotsList = ({list})=>{
                             if (availableLots <= 0) availableLots = 0;
 
                         return(
-                        <Link>
+                        <Link to={'/detail/' + res.pklt_cd}>
                             <li>
                                 {res.pklt_nm}<br/>
                                 주차가능 수 : {availableLots}

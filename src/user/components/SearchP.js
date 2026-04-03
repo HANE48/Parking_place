@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Parking_info from "../../Parking_info.json";
 import { Link, Route, Routes } from "react-router-dom";
 import PriceList from "./PriceList";
@@ -6,6 +6,9 @@ import LotsList from "./LotsList";
 import Detail from "./Detail";
 
 const SearchP = ()=>{
+    //유효성 검사 메시지를 담을 변수
+    const [searchError, setSearchError] = useState('')
+
     //사용자에게 입력받은 주소를 저장할 addr변수
     const [addr, setAddr] = useState('')
 
@@ -16,11 +19,19 @@ const SearchP = ()=>{
     
     //list변수에 검색한 결과를 배열로 저장
     const checkList = ()=>{
+        setSearchError('')
+        setButtons(false)
+
         if(!addr.trim()){
+            setSearchError('지역명을 입력해주세요')
             return;
         }
         const filtered = Parking_info.DATA.filter( (item)=> item.addr.includes(addr) )
 
+        if( !filtered ){
+            setSearchError('검색 결과가 없습니다')
+            return ;
+        }
         setList(filtered)
         setButtons(true)
 
@@ -46,6 +57,7 @@ const SearchP = ()=>{
         }
 
             return(
+                
                 <ul>
                     <Link to={'/detail/' + res.pklt_cd}>
                         <li>
@@ -85,10 +97,9 @@ const SearchP = ()=>{
                     <Route path="/price" element={<PriceList list={list}/>} />
                     <Route path="/space" element={<LotsList list={list}/>} />
                     <Route path="/size" element={<div>주차장규모순</div>} />
-                    <Route path="/search" element={showList} />
+                    <Route path="/search" element={ showList } />
                     <Route path="/" element={forEmptyList()} />
-                    <Route path="/detail/:id" element={<Detail/>}/>
-                    
+                    <Route path="/detail/:id" element={<Detail list={list}/>}/>
                 </Routes>
                 
             </div>
