@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Parking_info from "../../Parking_info.json";
 import { Link, Route, Routes } from "react-router-dom";
 import PriceList from "./PriceList";
+import LotsList from "./LotsList";
+import Detail from "./Detail";
 
 const SearchP = ()=>{
     //사용자에게 입력받은 주소를 저장할 addr변수
@@ -45,12 +47,12 @@ const SearchP = ()=>{
 
             return(
                 <ul>
-                <Link>
-                    <li>
-                        {res.pklt_nm}<br/>
-                        주차가능 수 : {availableLots}
-                    </li>
-                </Link>
+                    <Link to={'/detail/' + res.pklt_cd}>
+                        <li>
+                            {res.pklt_nm}<br/>
+                            주차가능 수 : {availableLots}
+                        </li>
+                    </Link>
                 </ul>
             )
     } ) 
@@ -64,8 +66,10 @@ const SearchP = ()=>{
             
                 <Link to={"/search"}><button onClick={checkList}>찾기</button></Link>
             </div>
+            {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
             <div>
+                <button> <Link to="/search">지역별</Link></button>
                 <button> <Link to="/price">가격순</Link></button>
                 <button> <Link to="/space">주차공간순</Link></button>
                 <button> <Link to="/size">주차장규모순</Link></button>
@@ -79,10 +83,11 @@ const SearchP = ()=>{
             <div>
                 <Routes>
                     <Route path="/price" element={<PriceList list={list}/>} />
-                    <Route path="/space" element={<div>주차공간순</div>} />
+                    <Route path="/space" element={<LotsList list={list}/>} />
                     <Route path="/size" element={<div>주차장규모순</div>} />
                     <Route path="/search" element={showList} />
                     <Route path="/" element={forEmptyList()} />
+                    <Route path="/detail/:id" element={<Detail/>}/>
                     
                 </Routes>
                 

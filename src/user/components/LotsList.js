@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const LotsList = ()=>{
+const LotsList = ({list})=>{
+
+    const newList = [...list].sort( (a , b)=>{
+        return ( b.tpkct - b.now_prk_vhcl_cnt ) - ( a.tpkct - a.now_prk_vhcl_cnt )
+    } )
+
 
     return(
-        <div></div>
+        <div>
+            <ul>
+                {
+                    newList.map( (res)=>{
+                        //현재 주차가능한 대수 계산 식
+                        let availableLots = Number(res.tpkct) - Number(res.now_prk_vhcl_cnt);
+                            if (availableLots <= 0) availableLots = 0;
+
+                        return(
+                        <Link>
+                            <li>
+                                {res.pklt_nm}<br/>
+                                주차가능 수 : {availableLots}
+                            </li>
+                        </Link>
+                            )
+                        } 
+                    )
+                }
+            </ul>
+        </div>
     )
 }
 
