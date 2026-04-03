@@ -1,5 +1,10 @@
-const ParkingTable = ({data, setData}) => {
+import React, { useState } from 'react';
+import ParkingData from './ParkingData';
 
+const ParkingTable = () => {
+    const id = 171730;
+    const [data, setData] = useState('');
+    // ParkingData.Data로 접근해서 json파일의 내용을 사용
     //[+]버튼 누르면 실행되는 함수
     const handleIncrease = (index) => {
         const newData = [...data]; // 원본데이터 복사
@@ -23,7 +28,7 @@ const ParkingTable = ({data, setData}) => {
             <thead>
                 <tr>
                     <th>주차장명</th>
-                    <th>{`[${addr}]현황`} </th>
+                    <th>현황 </th>
                     <th>현황 (현재/전체)</th>
                     <th>입/출차 관리</th>
                     <th>운영시간(평일)</th>
@@ -53,3 +58,4 @@ const ParkingTable = ({data, setData}) => {
 // const available = tpkct - now_prk_vh //주차가능수
 // const occupancyRate = (now_prk_vhcl_cnt / tpkct) * 100; //혼잡도
 
+export default ParkingTable;
