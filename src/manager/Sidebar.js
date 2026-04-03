@@ -4,12 +4,13 @@ function Sidebar(props) {
 
   const currentView = props.currentView;
   const setCurrentView = props.setCurrentView;
+  const first_name = props.data[0].pklt_nm.split(' ')[0];
 
   return (
     <div className="sidebar">
 
       <div className="sidebar-logo">
-        <h2>ADMIN</h2>
+        <h2>{first_name}</h2>
         <p>Parking System</p>
       </div>
 
