@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ParkingData from './ParkingData';
 
-const ParkingTable = () => {
+const ParkingTable = ({ data, setData }) => {
     // 추후 id만 인자로 받아서 진행하게 변경
     const id = 171730;
     const [data, setData] = useState(ParkingData.DATA.filter
@@ -15,6 +15,8 @@ const ParkingTable = () => {
         if (newData[index].now_prk_vhcl_cnt < newData[index].tpkct) {
             newData[index].now_prk_vhcl_cnt += 1; // 현재 주차수 +1
             setData(newData); //현재 상태(State) 업데이트
+        } else {
+            alert("만차입니다")
         }
     };
 
