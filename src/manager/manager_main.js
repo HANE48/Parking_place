@@ -8,9 +8,11 @@ import ParkingData from './ParkingData';
 // 관리자창 --> 로그인 기능과 로그인시 관리시스템으로 넘어가게변경
 
 function ManagerMain() {
-
+  const id = 171730;
   const [currentView, setCurrentView] = useState('dashboard');
-
+  const [data, setData] = useState(ParkingData.DATA.filter
+          (parking => parking.pklt_cd === id)
+      );
   return (
     <div className="manager-layout">
               
@@ -44,7 +46,7 @@ function ManagerMain() {
             <div className="content-box">
               <h3>요금 관리</h3>
               <p>기본요금, 추가요금, 유료/무료, 월정기권, 관리</p>
-              <ParkingPriceTable data = {ParkingData.DATA} />
+              <ParkingPriceTable data = {data} />
               {/* 요금관리 전체DATA -> data */}
             </div>
           )}
