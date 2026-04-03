@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './manager_main.css';
 import Sidebar from './Sidebar'; 
+import {Routes, Route} from 'react-router-dom';
+import ParkingTable from './ParkingTable';
+// 관리자창 --> 로그인 기능과 로그인시 관리시스템으로 넘어가게변경
+import ParkingData from './ParkingData.json';
+import ParkingPriceTable from './ParkingPriceTable';
+
 
 function ManagerMain() {
 
@@ -19,7 +25,7 @@ function ManagerMain() {
         </header>
 
         <section className="view-area">
-
+{/* 이 부분은 Routes로 감싸서 Route로 나오게 변경 */}
           {currentView === 'dashboard' && (
             <div className="content-box">
               <h3>종합 대시보드</h3>
@@ -37,7 +43,9 @@ function ManagerMain() {
           {currentView === 'price' && (
             <div className="content-box">
               <h3>요금 관리</h3>
-              <p>기본 요금 및 추가 요금 설정. 수정 버튼 필요할듯</p>
+              <p>기본요금, 추가요금, 유료/무료, 월정기권, 관리</p>
+              <ParkingPriceTable data = {ParkingData.DATA} />
+              {/* 요금관리 전체DATA -> data */}
             </div>
           )}
           {currentView === 'time' && (
