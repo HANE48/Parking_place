@@ -4,6 +4,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import PriceList from "./PriceList";
 import LotsList from "./LotsList";
 import Detail from "./Detail";
+import SizeList from "./SizeList";
 
 const SearchP = ()=>{
     //유효성 검사 메시지를 담을 변수
@@ -98,7 +99,7 @@ const SearchP = ()=>{
                 <Routes>
                     <Route path="/price" element={<PriceList list={list}/>} />
                     <Route path="/space" element={<LotsList list={list}/>} />
-                    <Route path="/size" element={<div>주차장규모순</div>} />
+                    <Route path="/size" element={<SizeList list={list} />} />
                     <Route path="/search" element={ showList } />
                     <Route path="/" element={forEmptyList()} />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>

@@ -15,7 +15,7 @@ const PriceList = ({list})=>{
        console.log(sortedList)
 
        const freeLots = list.filter(item => Number(item.bsc_prk_crg) === 0 || item.pay_yn_nm === '무료');
-console.log("무료 주차장 리스트:", freeLots);
+       console.log("무료 주차장 리스트:", freeLots);
 
        
     return(
