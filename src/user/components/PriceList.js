@@ -13,17 +13,31 @@ const PriceList = ({list})=>{
 
        console.log(sortedList)
 
+       const freeLots = list.filter(item => Number(item.bsc_prk_crg) === 0 || item.pay_yn_nm === '무료');
+console.log("무료 주차장 리스트:", freeLots);
+
        
     return(
         <div>
             <h2>주차 요금 목록</h2>
             <ul> 
                 {              
-                sortedList.map((item, index) => (
+                sortedList.map((item, index) => {
+
+                    const freeP = Number(item.bsc_prk_crg) === 0 || item.pay_yn_nm === '무료'
+
+                    return(
+
                     <li key={index}>
-                      {item.bsc_prk_crg}
-                    </li>                    
-                ) ) 
+                      {item.pklt_nm} <br/>
+                      {item.addr} <br/>
+
+                      {freeP ? ( "무료 주차장" ) : <span>기본시간: {item.bsc_prk_hr}분, {item.bsc_prk_crg}원</span>}
+                      
+                    </li> 
+                     )                   
+                   }
+                 )
                 }
             </ul>
         </div>
