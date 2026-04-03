@@ -8,6 +8,7 @@ import ParkingData from './ParkingData';
 // 관리자창 --> 로그인 기능과 로그인시 관리시스템으로 넘어가게변경
 
 function ManagerMain() {
+  // id는 로그인 기능 구현 후 파라미터로 받는것으로 변경
   const id = 171730;
   const [currentView, setCurrentView] = useState('dashboard');
   const [data, setData] = useState(ParkingData.DATA.filter
@@ -16,13 +17,13 @@ function ManagerMain() {
   return (
     <div className="manager-layout">
               
-      <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
+      <Sidebar currentView={currentView} setCurrentView={setCurrentView} data={data} />
       
       <main className="main-content">
 
         <header className="main-header">
-          <h2>🅿️ 주차 관리 시스템 (관리자)</h2>
-          <div className="mg-name">(관리자) 님 접속중</div>
+          <h2>🅿️ 주차 관리 시스템 <br/>{data[0].pklt_nm}</h2>
+          <div className="mg-name">{data[0].pklt_nm} 님 접속중</div>
         </header>
 
         <section className="view-area">
@@ -30,8 +31,9 @@ function ManagerMain() {
          
           {currentView === 'dashboard' && (
             <div className="content-box">
-              <h3>종합 대시보드</h3>
-              <p>실시간 주차 현황자리</p>
+              <ParkingTable data={data} setData={setData}/>
+              {/* <h3>종합 대시보드</h3>
+              <p>실시간 주차 현황자리</p> */}
             </div>
           )}
           {currentView === 'list' && (
@@ -44,8 +46,8 @@ function ManagerMain() {
           )}
           {currentView === 'price' && (
             <div className="content-box">
-              <h3>요금 관리</h3>
-              <p>기본요금, 추가요금, 유료/무료, 월정기권, 관리</p>
+              {/* <h3>요금 관리</h3>
+              <p>기본요금, 추가요금, 유료/무료, 월정기권, 관리</p> */}
               <ParkingPriceTable data = {data} />
               {/* 요금관리 전체DATA -> data */}
             </div>
