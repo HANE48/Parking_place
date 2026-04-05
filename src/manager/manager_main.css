@@ -70,3 +70,88 @@ a{
 .view-area {
   padding: 40px;
 }
+
+/* === 요금 관리 style === */
+
+/* 전체 배경 */
+.manager-main-layout {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* 검색창 감싸는 곳 (가운데 정렬) */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+  margin-top: -30px;
+}
+
+/* 검색창 디자인 */
+.main-search-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 테이블을 담는 하얀 박스 */
+.price-table-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* 테이블 기본 설정 */
+.manager-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+/* 제목 칸 */
+.manager-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  padding: 18px 15px;
+  border-bottom: 2px solid #e2e8f0;
+  font-weight: 600;
+}
+/* 데이터 칸 */
+.manager-table td {
+  padding: 16px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: center;
+}
+
+/* 주소 및 주차장명 정렬 */
+.addr-cell { color: #64748b; font-size: 13px; text-align: left; }
+.text-left { text-align: left !important; padding-left: 25px !important; }
+
+/* 유/무료 필터 선택창 */
+.filter-select {
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  color: #64748b;
+  cursor: pointer;
+}
+
+/* 수정,삭제 버튼 */
+.edit_btn, .delete_btn {
+  padding: 6px 12px;
+  margin: 0 2px;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/* 여기까지 요금관리 style */
