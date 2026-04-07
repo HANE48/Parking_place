@@ -6,24 +6,14 @@ import SearchP from './user/components/SearchP.js';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path='/*' element={<SearchP />} />
-          <Route path='/manager' element={<Login />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/*" element={<SearchP />} />
+        <Route path="/manager/login" element={<AdminLogin />} />
+      
+        <Route path="/manager/:id/*" element={<ManagerMain />} />
+      </Routes>
     </BrowserRouter>
   );
 }
-
-function Login(){
-  return(
-    <div>
-      <p>로그인 화면</p>
-    </div>
-  );
-
-}
-
 
 export default App;
