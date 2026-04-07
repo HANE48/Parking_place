@@ -15,13 +15,14 @@ input { margin:10px 10px;
 
 button { border-style : none;
          padding : 10px;
-         margin:10px 5px; 
+         margin:10px 5px;
+         margin-top: -10px;
          background-color: white;}
 
 .find { border: 2px solid black;
         border-radius: 25px; 
         padding: 12px 20px;
-        width: 67px;
-        font-size: 12px;
+        width: 70px;
+        font-size: 13px;
         font-weight: bold;
         }        
