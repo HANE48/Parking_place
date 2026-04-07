@@ -6,6 +6,7 @@ import LotsList from "./LotsList";
 import Detail from "./Detail";
 import SizeList from "./SizeList";
 import './User2.css';
+import AddressList from "./AddressList";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -55,30 +56,6 @@ const SearchP = ()=>{
         )
     }
 
-    //검색 결과 출력하는 메서드
-    const showList = list.map( (res)=>{
-        let availableLots = Number(res.tpkct)-Number(res.now_prk_vhcl_cnt);
-
-        //availableLots(주차가능수)가 0보다 작으면 0으로 표시
-        if( availableLots <= 0 ){
-            availableLots = 0
-        }
-
-            return(
-                <div className="div">
-                    <ul>
-                        <Link to={'/detail/' + res.pklt_cd}>
-                            <li>
-                                {res.pklt_nm}<br/>
-                                {res.addr}<br/>
-                                주차가능 수 : {availableLots}
-                            </li>
-                        </Link>
-                    </ul>
-                </div>
-            )
-    } ) 
-
     return(
         <div className="main-box">
             <div className="search-space">
@@ -108,7 +85,7 @@ const SearchP = ()=>{
                     <Route path="/price" element={<PriceList list={list}/>} />
                     <Route path="/space" element={<LotsList list={list}/>} />
                     <Route path="/size" element={<SizeList list={list} />} />
-                    <Route path="/search" element={ <div><h2>지역별 주차장 목록</h2>{showList} </div>} />
+                    <Route path="/search" element={ <AddressList list={list}/>} />
                     <Route path="/" element={forEmptyList()} />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>
                 </Routes>
