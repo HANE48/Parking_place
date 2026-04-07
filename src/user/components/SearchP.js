@@ -65,7 +65,7 @@ const SearchP = ()=>{
         }
 
             return(
-                <div>
+                <div className="div">
                     <ul>
                         <Link to={'/detail/' + res.pklt_cd}>
                             <li>

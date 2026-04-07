@@ -23,6 +23,18 @@
 
 a{ text-decoration:none; }
 
+/*상세정보*/
 
+.Ddiv{
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-
+.Dname{
+    text-align: center;
+    font-size: 25px;
+    color: lightblue;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
