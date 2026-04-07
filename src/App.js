@@ -1,15 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ManagerMain from './manager/manager_main';
-import ParkingTable from './manager/ParkingTable';
+import AdminLogin from './manager/AdminLogin';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <ManagerMain />
-      </div>
+      <Routes>
+        <Route path="/" element={<AdminLogin />} />
+        <Route path="/manager/login" element={<AdminLogin />} />
+      
+        <Route path="/manager/:id/*" element={<ManagerMain />} />
+      </Routes>
     </BrowserRouter>
   );
 }
