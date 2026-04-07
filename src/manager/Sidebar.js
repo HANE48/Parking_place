@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 function Sidebar(props) {
 
+  const {id} = useParams();
   const currentView = props.currentView;
   const setCurrentView = props.setCurrentView;
-  const first_name = props.data[0].pklt_nm.split(' ')[0];
+  let first_name = '';
+  if(id === 'admin'){
+    first_name = "전체 관리자"
+  }else{
+    first_name = props.data[0].pklt_nm.split(' ')[0];
+  }
+
 
   return (
     <div className="sidebar">
