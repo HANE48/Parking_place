@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SizeList = ({list})=>{
 
@@ -19,10 +20,12 @@ const SizeList = ({list})=>{
                     const sizeP = Number(item.tpkct)
 
                     return(
-                    <li>
-                        {item.pklt_nm} <br/>
-                        주차가능 공간: {sizeP}
-                    </li>
+                        <Link to={'/detail/' + item.pklt_cd }>
+                            <li>
+                                {item.pklt_nm} <br/>
+                                주차가능 공간: {sizeP}
+                            </li>
+                        </Link>
                     )
                 
                } ) 
