@@ -5,6 +5,7 @@ import Sidebar from './Sidebar.js';
 import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
+import StatCards from './StatCards.js';
 
 function ManagerMain() {
   const { id } = useParams(); 
@@ -50,8 +51,9 @@ function ManagerMain() {
 
           {currentView === 'list' && (
             <div className="content-box">
-              <h3>전체 주차장 리스트</h3>
-              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p>
+              {/* <h3>전체 주차장 리스트</h3>
+              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p> */}
+              <StatCards data={data} setData={setData} />
             </div>
           )}
 
