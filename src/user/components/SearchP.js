@@ -9,6 +9,7 @@ import './User2.css';
 import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
 import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
+import sp from ".././img/sp.png";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -52,7 +53,15 @@ const SearchP = ()=>{
     }
 
     return(
+
         <div className="main-box">
+            <div>
+                <img src={sp}
+                     style={{width : '505px',
+                             height : '185px',
+                             margin : ' 0 auto'}}/>
+            </div>
+
             <div className="search-space">
                 <input 
                         value={addr}
@@ -70,7 +79,7 @@ const SearchP = ()=>{
 
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
-            <div>
+            <div className="btn">
                 <button> <Link to="/search">지역별</Link></button>
                 <button> <Link to="/price">가격순</Link></button>
                 <button> <Link to="/space">주차공간순</Link></button>

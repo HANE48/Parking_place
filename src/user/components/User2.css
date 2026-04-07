@@ -1,34 +1,53 @@
-*{ padding: 0;
-    margin: 0; }
+* {
+        padding: 0;
+        margin: 0;
+}
 
-a{ text-decoration:none; }
+a {
+        text-decoration: none;
+}
 
-.main-box { width: 100%;
-            margin:10px auto; 
-            padding:20px;
-            text-align:center;}
+.search-space{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+}
 
-input { margin:10px 10px;
+.main-box {
+        width: 100%;
+        margin: 10px auto;
+        padding: 20px;
+        text-align: center;
+}
+
+input {
+        margin: 10px 10px;
         padding: 12px 20px;
-        border-radius: 25px; 
-        width: 400px; }
+        border-radius: 25px;
+        width: 400px;
+        margin-top: 0px;
+}
 
-button { border-style : none;
-         padding : 12px 20px;
-         margin:10px 5px; 
-         background-color: white;}
+btn > button {
+        border-style: none;
+        padding: 12px 20px;
+        margin: 10px 5px;
+        background-color: white;
+}
 
-button.find { border: 2px solid black;
-        border-radius: 25px; 
-        padding: 10px 10px;
+.find {
+        margin: 0;
+        border: 2px solid black;
+        border-radius: 25px;
         width: 67px;
         font-size: 12px;
         font-weight: bold;
-        cursor: pointer;
-        }        
+        background-color: white;
+        margin-bottom: 10px;
+}
 
-/* 주차장 목록에 마우스 올렸을 때 튀어나오는 효과 */
-li:hover{ transform : translate3d(-5px);
-          box-shadow : 0 5px 15px gray; }
-
-h3.first_str{ margin: 10px 0; }
+li:hover {
+        transform: translate3d(-5px);
+        box-shadow: 0 5px 15px gray;
+}

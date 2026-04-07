@@ -29,32 +29,21 @@ const Detail = ({list})=>{
                     <div>
                     <table className="info-table">
                     <tbody> 
-                    <tr>
-                    <th>주차장 명</th>
-                    <td>{res.pklt_nm}</td>
-                    </tr>
+                    <tr><th>주차장 명</th></tr>
+                    <td>{res.pklt_nm}</td>                   
                     
-                    <tr>
-                    <th>주소</th>
-                    <td>{res.addr}</td>
-                    </tr>
+                    <tr><th>주소</th></tr>
+                    <td>{res.addr}</td>                   
 
-                    <tr>
-                    <th>평일 운영시간</th>
+                    <tr><th>평일 운영시간</th></tr>
                     <td>{DayOpenHr}:{DayOpenMin} ~ {DayEndHr}:{DayEndMin}</td>
-                    </tr>
 
-                    <tr>
-                    <th>주말 운영시간</th>
+                    <tr><th>주말 운영시간</th></tr>
                     <td>{WeekOpenHr}:{WeekOpenMin} ~ {WeekEndHr}:{WeekEndMin}</td>
-                    </tr>
 
-                    <tr>
-                    <th>월 정기권 금액</th>
-                    <td>
-                        <div>{res.prd_amt}원</div> </td> 
-                    </tr>
-                    
+                    <tr><th>월 정기권 금액</th></tr>
+                    <td><div>{res.prd_amt}원</div></td>
+
                      </tbody>
                      </table>
                     </div>
