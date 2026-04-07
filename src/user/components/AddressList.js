@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./user1.css";
 
 const AddressList = ({list})=>{
 
     return(
-        <div>
-            <h2>지역별 목록</h2>
+        <div className="div">
+            <h2 className="name">지역별 목록</h2>
             <ul>
                 {
                     list.map( (res)=>{
@@ -18,7 +19,7 @@ const AddressList = ({list})=>{
 
                         return(
                             <Link to={'/detail/' + res.pklt_cd}>
-                                <li>
+                                <li className="content">
                                     {res.pklt_nm}<br/>
                                     {res.addr}<br/>
                                     주차가능 수 : {availableLots}

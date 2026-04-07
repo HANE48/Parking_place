@@ -64,7 +64,7 @@ const SearchP = ()=>{
                         onChange={(e)=>{setAddr(e.target.value)}}
                         placeholder="지역명을 입력하세요(구/도로명)"/>
             
-                <button onClick={checkList}>찾기</button>
+                <button onClick={checkList} className="find">찾기</button>
             </div>
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
