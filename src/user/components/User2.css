@@ -11,18 +11,20 @@ a{ text-decoration:none; }
 input { margin:10px 10px;
         padding: 12px 20px;
         border-radius: 25px; 
-        width: 400px;}
+        width: 400px; }
 
 button { border-style : none;
-         padding : 10px;
-         margin:10px 5px;
-         margin-top: -10px;
+         padding : 12px 20px;
+         margin:10px 5px; 
          background-color: white;}
 
 .find { border: 2px solid black;
         border-radius: 25px; 
-        padding: 12px 20px;
-        width: 70px;
-        font-size: 13px;
+        padding: 10px 20px;
+        width: 67px;
+        font-size: 12px;
         font-weight: bold;
         }        
+
+li:hover{ transform : translate3d(-5px);
+          box-shadow : 0 5px 15px gray; }

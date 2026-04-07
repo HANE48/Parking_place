@@ -23,7 +23,7 @@ const SizeList = ({list})=>{
                         <Link to={'/detail/' + item.pklt_cd }>
                             <li className="content">
                                 {item.pklt_nm} <br/>
-                                주차가능 공간: {sizeP}
+                                주차가능 수: {sizeP}
                             </li>
                         </Link>
                     )

@@ -8,6 +8,7 @@ import SizeList from "./SizeList";
 import './User2.css';
 import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
+import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -23,10 +24,12 @@ const SearchP = ()=>{
     const [list, setList] = useState([])
 
     const [buttons, setButtons] = useState(false)
+
+    const [isSearched, setIsSearched] = useState(false)
     
     //list변수에 검색한 결과를 배열로 저장
     const checkList = ()=>{
-        
+        setIsSearched(true);
         setSearchError('')
         setButtons(false)
 
@@ -56,7 +59,12 @@ const SearchP = ()=>{
                         onChange={(e)=>{setAddr(e.target.value)}}
                         placeholder="지역명을 입력하세요(구/도로명)"/>
             
-                <button onClick={checkList} className="find">찾기</button>
+                <button onClick={checkList} className="find">
+                    <img src={search_pic_removebg_preview}
+                        style={{width : '30px',
+                                height : '30px', 
+                                mixBlendMode: 'multiply'}}/>
+                </button>
             </div>
             
 
@@ -67,7 +75,7 @@ const SearchP = ()=>{
                 <button> <Link to="/price">가격순</Link></button>
                 <button> <Link to="/space">주차공간순</Link></button>
                 <button> <Link to="/size">주차장규모순</Link></button>
-            </div> : <div>{searchError}</div>
+            </div> : null
             }
 
 
@@ -78,7 +86,8 @@ const SearchP = ()=>{
                     <Route path="/size" element={<SizeList list={list} />} />
                     <Route path="/search" element={ <AddressList list={list}/> } />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>
-                    <Route path="/" element={<EmptyList/>}/>
+                    {/* 유저가 한 번이라도 "찾기" 버튼을 눌렀다면 EmptyList를 출력하지 않게 함. */}
+                    <Route path="/" element={ isSearched? <div>{searchError}</div> : <EmptyList/>}/>
                 </Routes>
                 
             </div>
