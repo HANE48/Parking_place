@@ -6,72 +6,94 @@ import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
 
-// 관리자창 --> 로그인 기능과 로그인시 관리시스템으로 넘어가게변경
-
 function ManagerMain() {
-  // id는 로그인 기능 구현 후 파라미터로 받는것으로 변경
-  const id = 171730;
-  const [currentView, setCurrentView] = useState('dashboard');
+  const { id } = useParams(); 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const pathParts = location.pathname.split('/');
+  const currentView = pathParts[pathParts.length - 1] || 'dashboard';
+
   const [data, setData] = useState(ParkingData.DATA);
-  // 전체데이터 중 현재 로그인한 관리자의 주차장 정보만 가져옴 
-  const currentParking = data.find(p => p.pklt_cd === id) || data[0];
+
+  // 제목 결정 로직
+  let viewTitle = "서울시 통합 주차 관리"; 
+  if (currentView === 'dashboard') viewTitle = "서울시 전체 현황 대시보드";
+  else if (currentView === 'list') viewTitle = "서울시 전체 주차장 목록";
+  else if (currentView === 'price') viewTitle = "구역별 요금 정책 관리";
+  else if (currentView === 'time') viewTitle = "구역별 운영 시간 관리";
+  else if (currentView === 'admin') viewTitle = "시스템 통합 설정";
+
+  const handleViewChange = (viewName) => {
+    navigate("/manager/" + id + "/" + viewName);
+  };
 
   return (
     <div className="manager-layout">
-
-      <Sidebar currentView={currentView} setCurrentView={setCurrentView} data={data} />
+      <Sidebar currentView={currentView} setCurrentView={handleViewChange} data={data} />
 
       <main className="main-content">
-
         <header className="main-header">
-          <h2>🅿️ 주차 관리 시스템 <br />{currentParking?.pklt_nm}</h2>
-          <div className="mg-name">{currentParking?.pklt_nm} 님 접속중</div>
+          <h2>{viewTitle}</h2>
+          <div className="mg-name">관리자({id})님 접속중</div>
         </header>
 
         <section className="view-area">
-
-
           {currentView === 'dashboard' && (
             <div className="content-box">
+              <div className="admin-summary-bar">
+                <h4>현재 관리 중인 서울시 주차장: {data.length}개</h4>
+              </div>
               <ParkingTable data={data} setData={setData} />
-              {/* <h3>종합 대시보드</h3>
-              <p>실시간 주차 현황자리</p> */}
             </div>
           )}
+
           {currentView === 'list' && (
             <div className="content-box">
-              <h3>주차장 목록</h3>
-              <p>주차장이름, 현재주차현황, 위치를 중심으로 리스트 만들고
-                만차인곳은 빨간색?으로 표시하는 로직 만들면 좋을 것 같음
-              </p>
+              <h3>전체 주차장 리스트</h3>
+              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p>
             </div>
           )}
+
           {currentView === 'price' && (
             <div className="content-box">
-              {/* <h3>요금 관리</h3>
-              <p>기본요금, 추가요금, 유료/무료, 월정기권, 관리</p> */}
               <ParkingPriceTable data={data} />
-              {/* 요금관리 전체DATA -> data */}
             </div>
           )}
-          {currentView === 'time' && (
-            <div className="content-box">
-              <h3>운영 시간</h3>
-              <p>각 주차장이 언제 문을 열고 닫는지 확인하는 곳
-                운영시간(평일/주말/공휴일)데이터 활용(24시간운영인지 아닌지 필터링해서 보여주면 좋을듯)
-              </p>
-            </div>
-          )}
+
           {currentView === 'admin' && (
             <div className="content-box">
-              <h3>관리자 정보</h3>
-              <p>내 정보 수정 및 비밀번호 변경 화면</p>
+              <h3>🔐 총괄 관리자 설정</h3>
+              <div className="admin-setting-box">
+                <p className="admin-info-text"><strong>총괄 관리자 ID:</strong> {id}</p>
+                <p className="admin-info-text"><strong>관리 권한:</strong> 서울시 전 구역</p>
+                
+                <hr className="admin-divider" />
+                
+                <h4>마스터 비밀번호 변경</h4>
+                <div className="pw-change-form">
+                  <input type="password" placeholder="현재 비밀번호" className="pw-input" id="oldPw" />
+                  <input type="password" placeholder="새 비밀번호" className="pw-input" id="newPw" />
+                  <input type="password" placeholder="새 비밀번호 확인" className="pw-input" id="checkPw" />
+                  
+                  <button 
+                    className="pw-save-btn"
+                    onClick={() => {
+                      const newPw = document.getElementById('newPw').value;
+                      const checkPw = document.getElementById('checkPw').value;
+                      if (!newPw || !checkPw) alert("새 비밀번호를 입력해주세요.");
+                      else if (newPw === checkPw) alert("마스터 비밀번호가 변경되었습니다.");
+                      else alert("비밀번호가 일치하지 않습니다.");
+                    }}
+                  >
+                    비밀번호 저장
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </section>
-
       </main>
-
     </div>
   );
 }

@@ -163,4 +163,72 @@ a{
   white-space: nowrap;
 }
 
-/* 여기까지 요금관리 style */
+
+
+/* 관리자 페이지 */
+/* 관리자 설정 섹션 박스 */
+.admin-setting-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  borderRadius: 8px;
+  background-color: #fff;
+}
+
+.admin-info-text {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.admin-divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+/* 비밀번호 변경 폼 컨테이너 */
+.pw-change-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+/* 입력창 스타일 */
+.pw-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.pw-input:focus {
+  border-color: #333;
+  outline: none;
+}
+
+/* 저장 버튼 스타일 */
+.pw-save-btn {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.pw-save-btn:hover {
+  background-color: #555;
+}
+
+/* 대시보드 요약 정보 바 */
+.admin-summary-bar {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-left: 5px solid #333;
+  border-radius: 4px;
+}
