@@ -70,7 +70,7 @@ const SearchP = ()=>{
 
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
-            <div>
+            <div className="btn">
                 <button> <Link to="/search">지역별</Link></button>
                 <button> <Link to="/price">가격순</Link></button>
                 <button> <Link to="/space">주차공간순</Link></button>
