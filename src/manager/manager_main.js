@@ -15,7 +15,14 @@ function ManagerMain() {
   const pathParts = location.pathname.split('/');
   const currentView = pathParts[pathParts.length - 1] || 'dashboard';
 
-  const [data, setData] = useState(ParkingData.DATA);
+  // id가 admin이 아닐경우 id에 맞는 데이터만 가져오도록 변경
+  const [data, setData] = useState(()=>{
+    if(id ==='admin'){
+      return ParkingData.DATA;
+    }else{
+      return ParkingData.DATA.filter((res, i)=> res.pklt_cd === Number(id));
+    }
+  });
 
   // 제목 결정 로직
   let viewTitle = "서울시 통합 주차 관리"; 
