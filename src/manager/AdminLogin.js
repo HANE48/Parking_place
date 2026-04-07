@@ -7,7 +7,7 @@ function AdminLogin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (id === "171730") {
+    if (id === "171730" || id === "admin") {
       
       navigate("/manager/" + id + "/dashboard");
     } else {

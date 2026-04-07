@@ -5,6 +5,7 @@ import Sidebar from './Sidebar.js';
 import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
+import StatCards from './StatCards.js';
 
 function ManagerMain() {
   const { id } = useParams(); 
@@ -14,7 +15,14 @@ function ManagerMain() {
   const pathParts = location.pathname.split('/');
   const currentView = pathParts[pathParts.length - 1] || 'dashboard';
 
-  const [data, setData] = useState(ParkingData.DATA);
+  // id가 admin이 아닐경우 id에 맞는 데이터만 가져오도록 변경
+  const [data, setData] = useState(()=>{
+    if(id ==='admin'){
+      return ParkingData.DATA;
+    }else{
+      return ParkingData.DATA.filter((res, i)=> res.pklt_cd === Number(id));
+    }
+  });
 
   // 제목 결정 로직
   let viewTitle = "서울시 통합 주차 관리"; 
@@ -50,8 +58,9 @@ function ManagerMain() {
 
           {currentView === 'list' && (
             <div className="content-box">
-              <h3>전체 주차장 리스트</h3>
-              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p>
+              {/* <h3>전체 주차장 리스트</h3>
+              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p> */}
+              <StatCards data={data} setData={setData} />
             </div>
           )}
 
