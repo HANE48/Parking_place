@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './StatCards.css';
+import './manager_main.css';
 
 const StatCards = ({ data, setData }) => {
     const [searchTerm, setSearchTerm] = useState('');

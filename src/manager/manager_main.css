@@ -247,6 +247,104 @@ a {
   border-radius: 4px;
 }
 
+/* === Parking Table 스타일 ===*/
+
+/* 전체 컨테이너 */
+.parking-container {
+    padding: 20px;
+}
+
+/* 상단 대시보드 박스 */
+.dashboard-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 검색창 (가운데 정렬) */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.parking-search-input {
+    padding: 12px 20px;
+    width: 320px;
+    border-radius: 15px;
+    border: 2px solid #007bff;
+    outline: none;
+    font-size: 16px;
+}
+
+/* 현황 테이블 */
+.status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.status-table thead tr {
+    background-color: #333;
+    color: #fff;
+}
+
+.status-table th, .status-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+/* 혼잡도 표시등 */
+.status-light {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* 관리 버튼 */
+.control-btn {
+    padding: 5px 12px;
+    margin: 0 3px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.control-btn:hover {
+    background-color: #f0f0f0;
+}
+
 /* === StatCards 스타일 === */
 
 /* 전체 컨테이너 */
