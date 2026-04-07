@@ -5,9 +5,9 @@
   background-color: #f0f2f5;
 }
 
-a{
+a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
 /* 사이드바 */
@@ -16,7 +16,7 @@ a{
   background-color: #1e293b;
   color: white;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   /* 세로로 줄세우기 */
 }
 
@@ -34,7 +34,7 @@ a{
 .sidebar-nav li {
   padding: 15px 25px;
   cursor: pointer;
-  display: flex; 
+  display: flex;
   align-items: center;
   transition: 0.3s;
 }
@@ -48,7 +48,9 @@ a{
   font-weight: bold;
 }
 
-.nav-icon { margin-right: 15px; }
+.nav-icon {
+  margin-right: 15px;
+}
 
 /* 본문 */
 .main-content {
@@ -64,7 +66,7 @@ a{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .view-area {
@@ -116,6 +118,7 @@ a{
   border-collapse: collapse;
   font-size: 14px;
 }
+
 /* 제목 칸 */
 .manager-table th {
   background-color: #f8fafc;
@@ -125,6 +128,7 @@ a{
   font-weight: 600;
   white-space: nowrap;
 }
+
 /* 데이터 칸 */
 .manager-table td {
   padding: 16px 15px;
@@ -133,8 +137,16 @@ a{
 }
 
 /* 주소 및 주차장명 정렬 */
-.addr-cell { color: #64748b; font-size: 13px; text-align: left; }
-.text-left { text-align: left !important; padding-left: 25px !important; }
+.addr-cell {
+  color: #64748b;
+  font-size: 13px;
+  text-align: left;
+}
+
+.text-left {
+  text-align: left !important;
+  padding-left: 25px !important;
+}
 
 /* 유/무료 필터 선택창 */
 .filter-select {
@@ -146,14 +158,18 @@ a{
 }
 
 .manager-table td:last-child {
-  display: flex;         
-  justify-content: center; /* 가로 가운데 정렬 */
-  align-items: center;    
-  gap: 8px;               /* 버튼 사이 간격 */
-  border-bottom: 1px solid #f1f5f9; 
+  display: flex;
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  align-items: center;
+  gap: 8px;
+  /* 버튼 사이 간격 */
+  border-bottom: 1px solid #f1f5f9;
 }
+
 /* 수정,삭제 버튼 */
-.edit_btn, .delete_btn {
+.edit_btn,
+.delete_btn {
   padding: 6px 12px;
   margin: 0 2px;
   cursor: pointer;
@@ -169,7 +185,7 @@ a{
   margin-top: 20px;
   padding: 20px;
   border: 1px solid #ddd;
-  borderRadius: 8px;
+  border-radius: 8px;
   background-color: #fff;
 }
 
@@ -229,4 +245,154 @@ a{
   background-color: #f8f9fa;
   border-left: 5px solid #333;
   border-radius: 4px;
+}
+
+/* === StatCards 스타일 === */
+
+/* 전체 컨테이너 */
+.admin-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.admin-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 검색창 구역 */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  padding: 12px 25px;
+  width: 350px;
+  border-radius: 30px;
+  border: 2px solid #333;
+  outline: none;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+/* 카드 그리드 레이아웃 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* 개별 카드 스타일 */
+.parking-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.parking-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 상태별 상단 테두리 색상 */
+.border-running {
+  border-top: 8px solid #28a745;
+}
+
+/* 운영중 */
+.border-full {
+  border-top: 8px solid #dc3545;
+}
+
+/* 만차 */
+.border-repair {
+  border-top: 8px solid #6c757d;
+}
+
+/* 점검중 */
+
+/* 상태 뱃지 (운영중/점검중) */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bg-running {
+  background-color: #28a745;
+}
+
+.bg-repair {
+  background-color: #6c757d;
+}
+
+/* 텍스트 스타일 */
+.label-text {
+  color: #888;
+  font-size: 13px;
+}
+
+.number-text {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.full-text {
+  color: #dc3545;
+}
+
+/* 버튼들 */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.edit-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.del-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  color: #dc3545;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 추가 버튼 (우측 하단 고정) */
+.add-btn-fixed {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 30px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-weight: bold;
 }
