@@ -26,14 +26,38 @@ const Detail = ({list})=>{
             <div className="Ddiv">
                 <div>
                     <h2 className="Dname">상세정보</h2>
-                    {res.pklt_nm}<br/>
-                    주소 : {res.addr}<br/>
-                    평일 운영시간 : {DayOpenHr}:{DayOpenMin} ~ {DayEndHr}:{DayEndMin} <br/>
-                    주말 운영시간 : {WeekOpenHr}:{WeekOpenMin} ~ {WeekEndHr}:{WeekEndMin} <br/>
-                    월 정기권 금액 :  
-                    { res.prd_amt == 0 ? " 월 정기권은 주차장으로 문의 해주세요"
-                        : <div>{res.prd_amt}원</div>
-                    }
+                    <div>
+                    <table className="info-table">
+                    <tbody> 
+                    <tr>
+                    <th>주차장 명</th>
+                    <td>{res.pklt_nm}</td>
+                    </tr>
+                    
+                    <tr>
+                    <th>주소</th>
+                    <td>{res.addr}</td>
+                    </tr>
+
+                    <tr>
+                    <th>평일 운영시간</th>
+                    <td>{DayOpenHr}:{DayOpenMin} ~ {DayEndHr}:{DayEndMin}</td>
+                    </tr>
+
+                    <tr>
+                    <th>주말 운영시간</th>
+                    <td>{WeekOpenHr}:{WeekOpenMin} ~ {WeekEndHr}:{WeekEndMin}</td>
+                    </tr>
+
+                    <tr>
+                    <th>월 정기권 금액</th>
+                    <td>
+                        <div>{res.prd_amt}원</div> </td> 
+                    </tr>
+                    
+                     </tbody>
+                     </table>
+                    </div>
                 </div>
             </div>
 
