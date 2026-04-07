@@ -27,11 +27,11 @@ function ManagerMain() {
 
   // 주차장명칭 추출
   const myParkingName = (id !== 'admin' && data.length > 0)
-  ? data[0].pklt_nm
-  :"서울시 전체";
+    ? data[0].pklt_nm
+    : "서울시 전체";
 
   // 제목 결정 로직
- let viewTitle = `${myParkingName} 통합 주차 관리`; 
+  let viewTitle = `${myParkingName} 통합 주차 관리`;
 
   if (currentView === 'dashboard') {
     viewTitle = `${myParkingName} 현황`;
@@ -42,14 +42,15 @@ function ManagerMain() {
   } else if (currentView === 'time') {
     viewTitle = `${myParkingName} 운영 시간 관리`;
   } else if (currentView === 'admin') {
-    viewTitle = id === 'admin' ? "시스템 통합 설정" : `${myParkingName} 관리자 정보`;}
+    viewTitle = id === 'admin' ? "시스템 통합 설정" : `${myParkingName} 관리자 정보`;
+  }
 
   const handleViewChange = (viewName) => {
     navigate("/manager/" + id + "/" + viewName);
   };
 
-//관리권한 문구
-    let adminAuthority = "";
+  //관리권한 문구
+  let adminAuthority = "";
   if (id === 'admin') {
     adminAuthority = "서울시 전 구역";
   } else if (data.length > 0) {
@@ -97,26 +98,26 @@ function ManagerMain() {
           )}
 
           {currentView === 'admin' && (
-  <div className="content-box">
-    
-    <h3>🔐 {id === 'admin' ? '총괄 관리자 설정' : '관리자 설정'}</h3>
-    
-    <div className="admin-setting-box">
-      <p className="admin-info-text">
-        <strong>{id === 'admin' ? '총괄 관리자 ID:' : '관리자 ID:'}</strong> {id}
-      </p>
-      
-      <p className="admin-info-text">
-    
-        <strong>관리 권한:</strong> {adminAuthority}
-      </p>
-      
-     
-      
-      
-    </div>
-  </div>
-)}
+            <div className="content-box">
+
+              <h3>🔐 {id === 'admin' ? '총괄 관리자 설정' : '관리자 설정'}</h3>
+
+              <div className="admin-setting-box">
+                <p className="admin-info-text">
+                  <strong>{id === 'admin' ? '총괄 관리자 ID:' : '관리자 ID:'}</strong> {id}
+                </p>
+
+                <p className="admin-info-text">
+
+                  <strong>관리 권한:</strong> {adminAuthority}
+                </p>
+
+
+
+
+              </div>
+            </div>
+          )}
         </section>
       </main>
     </div>
