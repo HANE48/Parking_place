@@ -6,6 +6,7 @@ import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
 import StatCards from './StatCards.js';
+import ParkingHours from './ParkingHours.js';
 
 function ManagerMain() {
   const { id } = useParams();
@@ -82,9 +83,16 @@ function ManagerMain() {
             </div>
           )}
 
+
           {currentView === 'price' && (
             <div className="content-box">
               <ParkingPriceTable data={data} />
+            </div>
+          )}
+
+          {currentView === 'time' && (
+            <div className="content-box">
+              <ParkingHours data={data} setData={setData} />
             </div>
           )}
 
