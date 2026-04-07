@@ -64,7 +64,7 @@ const ParkingTable = ({ data, setData }) => {
             {/* 검색창 */}
             <input 
                 type="text" 
-                placeholder="지역명 또는 주차장명을 검색하세요 (예:강남)" 
+                placeholder="지역명 또는 주차장명을 검색하세요 (예:강남구)" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={searchInputStyle}
@@ -125,7 +125,7 @@ const ParkingTable = ({ data, setData }) => {
 const cardStyle = { flex: 1, padding: '15px', border: '1px solid #ddd', borderRadius: '10px', textAlign: 'center' };
 const labelStyle = { fontSize: '12px', color: '#888' };
 const valStyle = { fontSize: '20px', fontWeight: 'bold' };
-const searchInputStyle = { padding: '10px', width: '250px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc' };
+const searchInputStyle = {padding: '12px 20px', width: '320px', borderRadius: '15px', border: '2px solid #007bff', outline: 'none', fontSize: '16px'}
 const thStyle = { padding: '10px' };
 const tdStyle = { padding: '10px', textAlign: 'center' };
 
