@@ -36,6 +36,15 @@ function ManagerMain() {
     navigate("/manager/" + id + "/" + viewName);
   };
 
+//관리권한 문구
+    let adminAuthority = "";
+  if (id === 'admin') {
+    adminAuthority = "서울시 전 구역";
+  } else if (data.length > 0) {
+    adminAuthority = data[0].pklt_nm; // 데이터가 있으면 그 주차장 주소
+  } else {
+    adminAuthority = "지정된 구역 없음";
+  }
   return (
     <div className="manager-layout">
       <Sidebar currentView={currentView} setCurrentView={handleViewChange} data={data} />
@@ -58,8 +67,6 @@ function ManagerMain() {
 
           {currentView === 'list' && (
             <div className="content-box">
-              {/* <h3>전체 주차장 리스트</h3>
-              <p>서울시 내 모든 주차장의 위치와 만차 여부를 관리합니다.</p> */}
               <StatCards data={data} setData={setData} />
             </div>
           )}
@@ -71,36 +78,54 @@ function ManagerMain() {
           )}
 
           {currentView === 'admin' && (
-            <div className="content-box">
-              <h3>🔐 총괄 관리자 설정</h3>
-              <div className="admin-setting-box">
-                <p className="admin-info-text"><strong>총괄 관리자 ID:</strong> {id}</p>
-                <p className="admin-info-text"><strong>관리 권한:</strong> 서울시 전 구역</p>
-                
-                <hr className="admin-divider" />
-                
-                <h4>마스터 비밀번호 변경</h4>
-                <div className="pw-change-form">
-                  <input type="password" placeholder="현재 비밀번호" className="pw-input" id="oldPw" />
-                  <input type="password" placeholder="새 비밀번호" className="pw-input" id="newPw" />
-                  <input type="password" placeholder="새 비밀번호 확인" className="pw-input" id="checkPw" />
-                  
-                  <button 
-                    className="pw-save-btn"
-                    onClick={() => {
-                      const newPw = document.getElementById('newPw').value;
-                      const checkPw = document.getElementById('checkPw').value;
-                      if (!newPw || !checkPw) alert("새 비밀번호를 입력해주세요.");
-                      else if (newPw === checkPw) alert("마스터 비밀번호가 변경되었습니다.");
-                      else alert("비밀번호가 일치하지 않습니다.");
-                    }}
-                  >
-                    비밀번호 저장
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+  <div className="content-box">
+    
+    <h3>🔐 {id === 'admin' ? '총괄 관리자 설정' : '관리자 설정'}</h3>
+    
+    <div className="admin-setting-box">
+      <p className="admin-info-text">
+        <strong>{id === 'admin' ? '총괄 관리자 ID:' : '관리자 ID:'}</strong> {id}
+      </p>
+      
+      <p className="admin-info-text">
+    
+        <strong>관리 권한:</strong> {adminAuthority}
+      </p>
+      
+      <hr className="admin-divider" />
+      
+      <h4>마스터 비밀번호 변경</h4>
+      <div className="pw-change-form">
+        <input type="password" placeholder="현재 비밀번호" className="pw-input" id="oldPw" />
+        <input type="password" placeholder="새 비밀번호" className="pw-input" id="newPw" />
+        <input type="password" placeholder="새 비밀번호 확인" className="pw-input" id="checkPw" />
+        
+        <button 
+          className="pw-save-btn"
+          onClick={() => {
+            const savedPw = localStorage.getItem("adminPw") || "1234";
+            const oldPw = document.getElementById('oldPw').value;
+            const newPw = document.getElementById('newPw').value;
+            const checkPw = document.getElementById('checkPw').value;
+
+            if (oldPw !== savedPw) {
+              alert("현재 비밀번호가 일치하지 않습니다.");
+            } else if (!newPw || !checkPw) {
+              alert("새 비밀번호를 입력해주세요.");
+            } else if (newPw === checkPw) {
+              localStorage.setItem("adminPw", newPw);
+              alert("비밀번호가 변경되었습니다.");
+            } else {
+              alert("비밀번호가 일치하지 않습니다.");
+            }
+          }}
+        >
+          비밀번호 저장
+        </button>
+      </div>
+    </div>
+  </div>
+)}
         </section>
       </main>
     </div>
