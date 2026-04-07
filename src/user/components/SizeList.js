@@ -11,8 +11,8 @@ const SizeList = ({list})=>{
     })
 
     return(
-        <div>
-            <h2>주차장 규모</h2> 
+        <div className="div">
+            <h2 className="name">주차장 규모</h2> 
             <ul>
             {
                 sortedSizeList.map((item)=>{
@@ -21,7 +21,7 @@ const SizeList = ({list})=>{
 
                     return(
                         <Link to={'/detail/' + item.pklt_cd }>
-                            <li>
+                            <li className="content">
                                 {item.pklt_nm} <br/>
                                 주차가능 공간: {sizeP}
                             </li>

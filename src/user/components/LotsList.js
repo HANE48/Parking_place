@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './User2.css';
+import "./user1.css"
 
 const LotsList = ({list})=>{
 
@@ -10,7 +10,8 @@ const LotsList = ({list})=>{
 
 
     return(
-        <div>
+        <div className="div">
+            <h2 className="name">주차 공간</h2>
             <ul>
                 {
                     newList.map( (res)=>{
@@ -20,7 +21,7 @@ const LotsList = ({list})=>{
 
                         return(
                         <Link to={'/detail/' + res.pklt_cd}>
-                            <li>
+                            <li className="content">
                                 {res.pklt_nm}<br/>
                                 {res.addr}<br/>
                                 주차가능 수 : {availableLots}
