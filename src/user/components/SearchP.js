@@ -57,10 +57,9 @@ const SearchP = ()=>{
 
         <div className="main-box">
             <div>
-                <img src={sp}
-                     style={{width : '505px',
-                             height : '185px',
-                             margin : ' 0 auto'}}/>
+                <img src={sp} 
+                style={{width : '938.98px',
+                        height : '862.99'}}/>              
             </div>
 
             <div className="search-space">
