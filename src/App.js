@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Parking_info from './Parking_info.json';
+import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import SearchP from './user/components/SearchP.js';
-
 
 function App() {
   return (
