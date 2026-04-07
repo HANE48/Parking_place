@@ -1,6 +1,8 @@
 *{ padding: 0;
     margin: 0; }
 
+a{ text-decoration:none; }
+
 .main-box { width: 100%;
             margin:10px auto; 
             padding:20px;
