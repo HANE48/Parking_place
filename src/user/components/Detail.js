@@ -6,7 +6,6 @@ const Detail = ({list})=>{
 
     //사용자가 클릭한 주차장의 id를 useParams로 받음
     const {id} = useParams();
-    const {menu} = useParams();
 
     const choosedItem = list.filter( (res) => {
         return res.pklt_cd == id

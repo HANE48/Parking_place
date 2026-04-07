@@ -7,6 +7,7 @@ import Detail from "./Detail";
 import SizeList from "./SizeList";
 import './User2.css';
 import AddressList from "./AddressList";
+import EmptyList from "./EmptyList";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -34,9 +35,10 @@ const SearchP = ()=>{
             navigate('/');
             return;
         }
+        
         const filtered = Parking_info.DATA.filter( (item)=> item.addr.includes(addr) )
 
-        if( !filtered ){
+        if (filtered.length === 0){
             setSearchError('검색 결과가 없습니다')
             return ;
         }
@@ -44,16 +46,6 @@ const SearchP = ()=>{
         setButtons(true)
         navigate('/search');
 
-    }
-
-    //검색하기 전 메인화면에 출력할 화면
-    const forEmptyList = ()=>{
-        return(
-            <div className="forEmptyList">
-                <h3>원하는 지역을 검색하고</h3>
-                <h3>그 지역의 주차장 현황을 확인해보세요</h3>
-            </div>
-        )
     }
 
     return(
@@ -66,6 +58,8 @@ const SearchP = ()=>{
             
                 <button onClick={checkList}>찾기</button>
             </div>
+            
+
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
             <div>
@@ -74,20 +68,17 @@ const SearchP = ()=>{
                 <button> <Link to="/space">주차공간순</Link></button>
                 <button> <Link to="/size">주차장규모순</Link></button>
             </div> : <div>{searchError}</div>
-}
+            }
 
-            {/* <div>
-                {showList}
-            </div> */}
 
             <div>
                 <Routes>
                     <Route path="/price" element={<PriceList list={list}/>} />
                     <Route path="/space" element={<LotsList list={list}/>} />
                     <Route path="/size" element={<SizeList list={list} />} />
-                    <Route path="/search" element={ <AddressList list={list}/>} />
-                    <Route path="/" element={forEmptyList()} />
+                    <Route path="/search" element={ <AddressList list={list}/> } />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>
+                    <Route path="/" element={<EmptyList/>}/>
                 </Routes>
                 
             </div>
