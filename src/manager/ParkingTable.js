@@ -80,14 +80,14 @@ const ParkingTable = ({ data, setData }) => {
     };
 
     return (
-        <div className="admin-container">
+        <div className="parking-container">
             <h2 className="admin-title">등록된 주차장 관리</h2>
 
             <div className="search-wrapper">
                 <input 
                     className="search-input"
                     type="text" 
-                    placeholder="지역 또는 주차장명을 검색하세요" 
+                    placeholder="지역 또는 주차장명을 검색하세요 (예:강남구)" 
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
