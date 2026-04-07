@@ -6,6 +6,7 @@ import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
 import StatCards from './StatCards.js';
+import ParkingHours from './ParkingHours.js';
 
 function ManagerMain() {
   const { id } = useParams();
@@ -82,9 +83,16 @@ function ManagerMain() {
             </div>
           )}
 
+
           {currentView === 'price' && (
             <div className="content-box">
               <ParkingPriceTable data={data} />
+            </div>
+          )}
+
+          {currentView === 'time' && (
+            <div className="content-box">
+              <ParkingHours data={data} setData={setData} />
             </div>
           )}
 
@@ -103,37 +111,9 @@ function ManagerMain() {
         <strong>관리 권한:</strong> {adminAuthority}
       </p>
       
-      <hr className="admin-divider" />
+     
       
-      <h4>마스터 비밀번호 변경</h4>
-      <div className="pw-change-form">
-        <input type="password" placeholder="현재 비밀번호" className="pw-input" id="oldPw" />
-        <input type="password" placeholder="새 비밀번호" className="pw-input" id="newPw" />
-        <input type="password" placeholder="새 비밀번호 확인" className="pw-input" id="checkPw" />
-        
-        <button 
-          className="pw-save-btn"
-          onClick={() => {
-            const savedPw = localStorage.getItem("adminPw") || "1234";
-            const oldPw = document.getElementById('oldPw').value;
-            const newPw = document.getElementById('newPw').value;
-            const checkPw = document.getElementById('checkPw').value;
-
-            if (oldPw !== savedPw) {
-              alert("현재 비밀번호가 일치하지 않습니다.");
-            } else if (!newPw || !checkPw) {
-              alert("새 비밀번호를 입력해주세요.");
-            } else if (newPw === checkPw) {
-              localStorage.setItem("adminPw", newPw);
-              alert("비밀번호가 변경되었습니다.");
-            } else {
-              alert("비밀번호가 일치하지 않습니다.");
-            }
-          }}
-        >
-          비밀번호 저장
-        </button>
-      </div>
+      
     </div>
   </div>
 )}
