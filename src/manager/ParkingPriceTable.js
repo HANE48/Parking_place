@@ -9,7 +9,7 @@ function ParkingPriceTable(props) {
     const [filter, setFilter] = useState("전체");
 
     // 데이터 가나다순 정렬
-    const sortedData = data.slice(); // 원본 데이터를 건드리지 않기 위해 복사본 생성
+    const sortedData = data.slice(); // 복사본 생성
     sortedData.sort(function(a, b) {
         if (a.pklt_nm < b.pklt_nm) return -1; // 앞에 있는 게 작으면 그대로
         if (a.pklt_nm > b.pklt_nm) return 1;  // 뒤에 있는 게 크면 자리 바꿈

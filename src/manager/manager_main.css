@@ -123,6 +123,7 @@ a{
   padding: 18px 15px;
   border-bottom: 2px solid #e2e8f0;
   font-weight: 600;
+  white-space: nowrap;
 }
 /* 데이터 칸 */
 .manager-table td {
@@ -144,6 +145,13 @@ a{
   cursor: pointer;
 }
 
+.manager-table td:last-child {
+  display: flex;         
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center;    
+  gap: 8px;               /* 버튼 사이 간격 */
+  border-bottom: 1px solid #f1f5f9; 
+}
 /* 수정,삭제 버튼 */
 .edit_btn, .delete_btn {
   padding: 6px 12px;
@@ -152,6 +160,7 @@ a{
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   background-color: #fff;
+  white-space: nowrap;
 }
 
 /* 여기까지 요금관리 style */
