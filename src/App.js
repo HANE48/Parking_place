@@ -8,9 +8,9 @@ import ManagerMain from './manager/manager_main.js';
 function App() {
   return (
     <BrowserRouter>
-      <Link to='/manager/login' >관리자 로그인</Link>
-      &nbsp;&nbsp;&nbsp;&nbsp;
       <Link to='/'>홈</Link>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <Link to='/manager/login'>관리자 로그인</Link>
       <Routes>
         <Route path="/*" element={<SearchP />} />
         <Route path="/manager/login/*" element={<AdminLogin />} />
