@@ -10,6 +10,7 @@ import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
 import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
 import sp from ".././img/sp.png";
+import Parking2 from "../img/Parking2.png";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -96,7 +97,8 @@ const SearchP = ()=>{
                     <Route path="/search" element={ <AddressList list={list}/> } />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>
                     {/* 유저가 한 번이라도 "찾기" 버튼을 눌렀다면 EmptyList를 출력하지 않게 함. */}
-                    <Route path="/" element={ isSearched? <div>{searchError}</div> : <EmptyList/>}/>
+                    <Route path="/" element={ isSearched? 
+                            <div className="errorMsg">{searchError} <img src={Parking2}/></div> : <EmptyList/>}/>
                 </Routes>
                 
             </div>
