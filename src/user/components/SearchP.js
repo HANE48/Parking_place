@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Parking_info from "../../Parking_info.json";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import PriceList from "./PriceList";
 import LotsList from "./LotsList";
 import Detail from "./Detail";
 import SizeList from "./SizeList";
+import './User2.css';
 
 const SearchP = ()=>{
+    // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
+    const navigate = useNavigate();
+
     //유효성 검사 메시지를 담을 변수
     const [searchError, setSearchError] = useState('')
 
@@ -20,11 +24,13 @@ const SearchP = ()=>{
     
     //list변수에 검색한 결과를 배열로 저장
     const checkList = ()=>{
+        
         setSearchError('')
         setButtons(false)
 
         if(!addr.trim()){
             setSearchError('지역명을 입력해주세요')
+            navigate('/');
             return;
         }
         const filtered = Parking_info.DATA.filter( (item)=> item.addr.includes(addr) )
@@ -35,13 +41,14 @@ const SearchP = ()=>{
         }
         setList(filtered)
         setButtons(true)
+        navigate('/search');
 
     }
 
     //검색하기 전 메인화면에 출력할 화면
     const forEmptyList = ()=>{
         return(
-            <div>
+            <div className="forEmptyList">
                 <h3>원하는 지역을 검색하고</h3>
                 <h3>그 지역의 주차장 현황을 확인해보세요</h3>
             </div>
@@ -73,13 +80,14 @@ const SearchP = ()=>{
     } ) 
 
     return(
-        <div>
-            <div>
-                <input value={addr}
+        <div className="main-box">
+            <div className="search-space">
+                <input 
+                        value={addr}
                         onChange={(e)=>{setAddr(e.target.value)}}
                         placeholder="지역명을 입력하세요(구/도로명)"/>
             
-                <Link to={"/search"}><button onClick={checkList}>찾기</button></Link>
+                <button onClick={checkList}>찾기</button>
             </div>
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
@@ -88,7 +96,7 @@ const SearchP = ()=>{
                 <button> <Link to="/price">가격순</Link></button>
                 <button> <Link to="/space">주차공간순</Link></button>
                 <button> <Link to="/size">주차장규모순</Link></button>
-            </div> : <div></div>
+            </div> : <div>{searchError}</div>
 }
 
             {/* <div>
@@ -100,7 +108,7 @@ const SearchP = ()=>{
                     <Route path="/price" element={<PriceList list={list}/>} />
                     <Route path="/space" element={<LotsList list={list}/>} />
                     <Route path="/size" element={<SizeList list={list} />} />
-                    <Route path="/search" element={ showList } />
+                    <Route path="/search" element={ <div><h2>지역별 주차장 목록</h2>{showList} </div>} />
                     <Route path="/" element={forEmptyList()} />
                     <Route path="/detail/:id" element={<Detail list={list}/>}/>
                 </Routes>

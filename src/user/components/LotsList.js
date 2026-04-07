@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './User2.css';
 
 const LotsList = ({list})=>{
 

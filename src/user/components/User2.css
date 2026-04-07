@@ -1,0 +1,15 @@
+*{ padding: 0;
+    margin: 0; }
+
+.main-box { width: 100%;
+            margin:10px auto; 
+            padding:20px;
+            text-align:center;}
+
+input { margin:10px 10px;
+        padding: 12px 20px;
+        border-radius: 25px; 
+        width: 400px;}
+
+button { border-radius: 25px;
+         padding : 10px; }
