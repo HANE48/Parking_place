@@ -18,13 +18,17 @@ button { border-style : none;
          margin:10px 5px; 
          background-color: white;}
 
-.find { border: 2px solid black;
+button.find { border: 2px solid black;
         border-radius: 25px; 
-        padding: 10px 20px;
+        padding: 10px 10px;
         width: 67px;
         font-size: 12px;
         font-weight: bold;
+        cursor: pointer;
         }        
 
+/* 주차장 목록에 마우스 올렸을 때 튀어나오는 효과 */
 li:hover{ transform : translate3d(-5px);
           box-shadow : 0 5px 15px gray; }
+
+h3.first_str{ margin: 10px 0; }
