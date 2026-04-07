@@ -41,12 +41,21 @@ a{ text-decoration:none; }
 }
 
 .info-table{
+    border: 1px solid black;
+    text-align: center;
     margin: auto;
+    padding: 15px;
+    border-radius: 15px;
 }
 
-.info-table th, .info-table td{
-    border: 1px solid black;
+.info-table td{
+    padding: 15px;
+    text-align: center;
+}
+
+.info-table th{
     padding: 10px;
-    text-align: left;
-    border-radius: 25px;
+    text-align: center;
+    background-color: lightblue;
+    color: black;
 }
