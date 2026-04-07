@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./user1.css"
 
 const PriceList = ({list})=>{
     
@@ -19,8 +20,8 @@ const PriceList = ({list})=>{
 
        
     return(
-        <div>
-            <h2>주차 요금 목록</h2>
+        <div className="div">
+            <h2 className="name">주차 요금 목록</h2>
             <ul> 
                 {              
                 sortedList.map((item, index) => {
@@ -29,7 +30,7 @@ const PriceList = ({list})=>{
 
                     return(
                         <Link to={'/detail/' + item.pklt_cd }>
-                            <li key={index}>
+                            <li key={index} className="content">
                             {item.pklt_nm} <br/>
                             {item.addr} <br/>
 
