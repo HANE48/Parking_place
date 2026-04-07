@@ -1,132 +1,132 @@
 import React, { useState } from 'react';
 
 const ParkingTable = ({ data, setData }) => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState('');
 
-    // 1. 혼잡도 및 빈자리 계산 (마이너스 값 방어 로직)
-    const getStatus = (now, total) => {
-        const nNow = Number(now || 0);
-        const nTotal = Number(total || 0);
-        
-        // 현재 대수가 전체보다 많아도 계산은 100%까지만 (혼잡도 표시용)
-        const calcNow = nNow > nTotal ? nTotal : nNow;
-        const rate = (calcNow / nTotal) * 100;
-        
-        // 빈자리 계산: 0보다 작아지면 무조건 0으로 표시
-        const available = nTotal - nNow;
-        const displayAvailable = available < 0 ? 0 : available;
+    const totalLots = data.length;
+    const totalCapacity = data.reduce((acc, cur) => acc + Number(cur.tpkct || 0), 0);
+    
+    // 현재 차량 합계 계산 시에도 초과분 제외 (69 -> 55로 계산)
+    const totalParked = data.reduce((acc, cur) => {
+        const curCnt = Number(cur.now_prk_vhcl_cnt || 0);
+        const maxCnt = Number(cur.tpkct || 0);
+        return acc + Math.min(curCnt, maxCnt); //기존데이터 수치 넘치면 강제로 깍음
+    }, 0);
+    
+    const totalAvailable = totalCapacity - totalParked;
 
-        if (rate > 90) return { label: "혼잡", color: "#A32D2D", bg: "#FCEBEB", border: "#F09595", available: displayAvailable };
-        if (rate >= 60) return { label: "보통", color: "#854F0B", bg: "#FAEEDA", border: "#EF9F27", available: displayAvailable };
-        return { label: "여유", color: "#3B6D11", bg: "#EAF3DE", border: "#97C459", available: displayAvailable };
-    };
+    // 검색 필터링
+    const filteredData = data.filter(item => 
+        item.pklt_nm.includes(searchTerm) || (item.addr && item.addr.includes(searchTerm))
+    );
 
-    // 2. 검색 필터링 (지역명 또는 주차장명)
-    const filteredData = data.filter(item => {
-        const term = searchTerm.trim().toLowerCase();
-        return (
-            item.pklt_nm?.toLowerCase().includes(term) ||
-            item.addr?.toLowerCase().includes(term)
-        );
-    });
-
-    // 3. 입차 로직 (- 버튼 클릭 시 숫자 증가)
-    const handleIncrease = (pklt_cd) => {
-        setData(prevData => prevData.map(item => {
-            if (item.pklt_cd === pklt_cd) {
-                const current = Number(item.now_prk_vhcl_cnt || 0);
-                const total = Number(item.tpkct || 0);
+    // 입/출차 관리 함수 (버튼 클릭 시) ---
+    const handleUpdate = (id, change) => {
+        const newData = data.map(item => {
+            if (item.pklt_cd === id) {
+                // 수정 시점에도 초과된 데이터(69)는 일단 한계치(55)로 맞춘 후 계산 시작
+                const max = Number(item.tpkct);
+                let current = Math.min(Number(item.now_prk_vhcl_cnt), max);
                 
-                if (current < total) {
-                    return { ...item, now_prk_vhcl_cnt: current + 1 };
-                }
-                alert("이미 만차입니다!");
-            }
-            return item;
-        }));
-    };
+                const updated = current + change;
 
-    // 4. 출차 로직 (+ 버튼 클릭 시 숫자 감소)
-    const handleDecrease = (pklt_cd) => {
-        setData(prevData => prevData.map(item => {
-            if (item.pklt_cd === pklt_cd) {
-                const current = Number(item.now_prk_vhcl_cnt || 0);
-                if (current > 0) {
-                    return { ...item, now_prk_vhcl_cnt: current - 1 };
+                if (updated >= 0 && updated <= max) {
+                    return { ...item, now_prk_vhcl_cnt: updated };
+                } else if (updated > max) {
+                    alert("이미 만차입니다!");
+                } else if (updated < 0) {
+                    alert("현재 주차된 차량이 없습니다.");
                 }
             }
             return item;
-        }));
+        });
+        setData(newData);
     };
 
     return (
-        <div style={{ padding: '10px' }}>
-            <div style={{ marginBottom: '16px' }}>
-                <input
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="지역명 또는 주차장명을 입력하세요 (예: 강남구)"
-                    style={inputStyle}
-                />
+        <div style={{ padding: '20px' }}>
+           
+            <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
+                <div style={cardStyle}>
+                    <span style={labelStyle}>전체 총 대수</span>
+                    <div style={valStyle}>{totalCapacity} <small>면</small></div>
+                </div>
+                <div style={cardStyle}>
+                    <span style={labelStyle}>현재 여유 공간</span>
+                    <div style={{ ...valStyle, color: '#007bff' }}>{totalAvailable} <small>석</small></div>
+                </div>
+                <div style={cardStyle}>
+                    <span style={labelStyle}>현재 주차 차량</span>
+                    <div style={{ ...valStyle, color: '#d9534f' }}>{totalParked} <small>대</small></div>
+                </div>
             </div>
 
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px' }}>
+            {/* 검색창 */}
+            <input 
+                type="text" 
+                placeholder="지역명 또는 주차장명을 검색하세요 (예:강남)" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={searchInputStyle}
+            />
+
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '15px' }}>
                 <thead>
-                    <tr style={{ borderBottom: '1.5px solid #333', backgroundColor: '#f9f9f9' }}>
-                        <th style={thStyle('left')}>주차장명</th>
-                        <th style={thStyle('left')}>주소</th>
-                        <th style={thStyle('center')}>빈자리 / 전체</th>
-                        <th style={thStyle('center')}>혼잡도</th>
-                        <th style={thStyle('center')}>입/출차 관리</th>
+                    <tr style={{ backgroundColor: '#333', color: '#fff' }}>
+                        <th style={thStyle}>주차장명</th>
+                        <th style={thStyle}>현황 (현재 / 전체)</th>
+                        <th style={thStyle}>상태</th>
+                        <th style={thStyle}>관리</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredData.length > 0 ? (
-                        filteredData.map((parking) => {
-                            const status = getStatus(parking.now_prk_vhcl_cnt, parking.tpkct);
-                            return (
-                                <tr key={parking.pklt_cd} style={{ borderBottom: '1px solid #eee' }}>
-                                    <td style={tdStyle('left')}><strong>{parking.pklt_nm}</strong></td>
-                                    <td style={{ ...tdStyle('left'), fontSize: '12px', color: '#666' }}>{parking.addr || "-"}</td>
-                                    <td style={{ ...tdStyle('center'), fontWeight: '600' }}>
-                                        <span style={{ color: status.available === 0 ? 'red' : 'inherit' }}>
-                                            {status.available}
-                                        </span> / {Number(parking.tpkct)}
-                                    </td>
-                                    <td style={tdStyle('center')}>
-                                        <span style={{
-                                            color: status.color, backgroundColor: status.bg,
-                                            border: `1px solid ${status.border}`, padding: '3px 10px',
-                                            borderRadius: '20px', fontSize: '12px', fontWeight: 'bold'
-                                        }}>
-                                            {status.label}
-                                        </span>
-                                    </td>
-                                    <td style={tdStyle('center')}>
-                                        {/* - 버튼: 입차(숫자 증가), + 버튼: 출차(숫자 감소) */}
-                                        <button onClick={() => handleIncrease(parking.pklt_cd)} style={btnStyle}>-</button>
-                                        <button onClick={() => handleDecrease(parking.pklt_cd)} style={{ ...btnStyle, marginLeft: '4px' }}>+</button>
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    ) : (
-                        <tr>
-                            <td colSpan="5" style={{ padding: '40px', textAlign: 'center', color: '#999' }}>
-                                검색 결과가 없습니다.
-                            </td>
-                        </tr>
-                    )}
+                    {filteredData.map((parking) => {
+                        const max = Number(parking.tpkct);
+                        // Math.min: 화면에 보여줄 때부터 초과값(69)을 최대값(55)으로 깎아서 보여줌
+                        // Json데이터 값 읽어올때 초과값도 그대로 불러와서 Math.min으로 맞춤
+                        const cur = Math.min(Number(parking.now_prk_vhcl_cnt), max);
+                        const ratio = (cur / max) * 100;
+                        const isFull = cur >= max;
+
+                        return (
+                            <tr key={parking.pklt_cd} style={{ borderBottom: '1px solid #eee' }}>
+                                <td style={{ ...tdStyle, textAlign: 'left' }}>{parking.pklt_nm}</td>
+                                <td style={tdStyle}>
+                                    {/* 만차 : 빨간색 강조 */}
+                                    <span style={{ color: isFull ? 'red' : 'black', fontWeight: 'bold' }}>
+                                        {cur}
+                                    </span> / {max}
+                                </td>
+                                {/* 혼잡도 상태표시등 */}
+                                <td style={tdStyle}>
+                                    <div style={{
+                                        width: '45px', height: '45px', borderRadius: '50%',
+                                        backgroundColor: ratio >= 90 ? 'red' : ratio >= 50 ? 'orange' : 'green',
+                                        color: 'white', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px'
+                                    }}>
+                                        {ratio >= 90 ? '혼잡' : ratio >= 50 ? '보통' : '여유'}
+                                    </div>
+                                </td>
+                                {/* 관리자 +,- 차량관리 버튼 */}
+                                <td style={tdStyle}>
+                                    <button onClick={() => handleUpdate(parking.pklt_cd, 1)}>+</button>
+                                    <button onClick={() => handleUpdate(parking.pklt_cd, -1)}>-</button>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
     );
 };
 
-// 스타일 가이드
-const inputStyle = { padding: '10px 14px', width: '100%', maxWidth: '480px', borderRadius: '8px', border: '1.5px solid #ccc', fontSize: '14px' };
-const thStyle = (align) => ({ padding: '12px 8px', textAlign: align, color: '#444' });
-const tdStyle = (align) => ({ padding: '12px 8px', textAlign: align, verticalAlign: 'middle' });
-const btnStyle = { padding: '5px 12px', cursor: 'pointer', border: '1px solid #ddd', borderRadius: '4px', backgroundColor: '#fff', fontSize: '16px' };
+// 스타일 (수정가능)
+const cardStyle = { flex: 1, padding: '15px', border: '1px solid #ddd', borderRadius: '10px', textAlign: 'center' };
+const labelStyle = { fontSize: '12px', color: '#888' };
+const valStyle = { fontSize: '20px', fontWeight: 'bold' };
+const searchInputStyle = { padding: '10px', width: '250px', marginBottom: '10px', borderRadius: '5px', border: '1px solid #ccc' };
+const thStyle = { padding: '10px' };
+const tdStyle = { padding: '10px', textAlign: 'center' };
 
 export default ParkingTable;
