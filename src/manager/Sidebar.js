@@ -1,17 +1,38 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
-function Sidebar(props) {
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
-  const {id} = useParams();
+function Sidebar(props) {
+  const { id } = useParams();
+  const navigate = useNavigate(); //이동을 위한 navigate함수 선언
+
   const currentView = props.currentView;
   const setCurrentView = props.setCurrentView;
+
+  // 로그아웃 처리 함수
+  const handleLogout = () => {
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      // 1. 필요한 경우 세션이나 로컬스토리지 삭제 (예: localStorage.clear();)
+      // 2. 관리자 로그인 화면(AdminLogin)으로 이동
+      navigate('/');
+    }
+  };
+  
   let first_name = '';
-  if(id === 'admin'){
-    first_name = "서울시 총괄 관리자"
-  }else{
-    first_name = props.data[0].pklt_nm.split(' ')[0];
+  if (id === 'admin') {
+    first_name = "서울시 총괄 관리자";
+  } else {
+    // 데이터가 있을 때만 접근하도록 안전장치 추가
+    first_name = props.data && props.data.length > 0
+      ? props.data[0].pklt_nm.split(' ')[0]
+      : '관리자';
   }
 
+  // let first_name = '';
+  // if(id === 'admin'){
+  //   first_name = "서울시 총괄 관리자"
+  // }else{
+  //   first_name = props.data[0].pklt_nm.split(' ')[0];
+  // }
 
   return (
     <div className="sidebar">
@@ -71,9 +92,11 @@ function Sidebar(props) {
         </ul>
       </nav>
 
-
-      <div className="sidebar-footer">
-        <button className="logout-btn">로그아웃</button>
+    {/* 로그아웃 버튼 영역 */}
+     <div className="sidebar-footer">
+        <button className="logout-btn" onClick={handleLogout}>
+          로그아웃
+        </button>
       </div>
 
     </div>
