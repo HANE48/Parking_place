@@ -7,7 +7,7 @@ function Sidebar(props) {
   const setCurrentView = props.setCurrentView;
   let first_name = '';
   if(id === 'admin'){
-    first_name = "전체 관리자"
+    first_name = "서울시 총괄 관리자"
   }else{
     first_name = props.data[0].pklt_nm.split(' ')[0];
   }
