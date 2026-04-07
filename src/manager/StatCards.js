@@ -29,29 +29,53 @@ const StatCards = ({ data, setData }) => {
         setData(newData);
     };
 
-    // ---4. 추가 기능 (새로운 주차장 등록) ---
-    const handleAdd = () => {
-        const name = prompt("주차장 이름을 입력하세요:");
-        if (!name) return; // 취소 누르면 중단
+    // --- 4. 수정 기능 (기존 정보 고치기) ---
+    const handleEdit = (id) => {
+        // 고칠 대상을 먼저 찾아요
+        const target = data.find(item => item.pklt_cd === id);
+        if (!target) return;
 
+        // 기존 내용을 보여주면서 새로 입력받기
+        const newName = prompt("수정할 이름을 입력하세요:", target.pklt_nm);
+        const newAddr = prompt("수정할 주소를 입력하세요:", target.addr);
+        const newCap = prompt("수정할 총 주차 면수를 입력하세요:", target.tpkct);
+
+        if (newName && newCap) {
+            const newData = data.map(item => {
+                if (item.pklt_cd === id) {
+                    // 찾은 녀석만 새 내용으로 덮어쓰기!
+                    return { 
+                        ...item, 
+                        pklt_nm: newName, 
+                        addr: newAddr, 
+                        tpkct: newCap 
+                    };
+                }
+                return item;
+            });
+            setData(newData);
+            alert("수정이 완료되었습니다!");
+        }
+    };
+
+    // --- 5. 추가 기능 ---
+    const handleAdd = () => {
+        const name = prompt("새 주차장 이름을 입력하세요:");
+        if (!name) return;
         const address = prompt("주차장 주소를 입력하세요:");
         const capacity = prompt("총 주차 가능 대수를 입력하세요 (숫자만):");
 
         if (name && capacity) {
             const newParking = {
-                pklt_cd: Date.now().toString(), // 겹치지 않게 현재 시간으로 임시 ID 생성
+                pklt_cd: Date.now().toString(),
                 pklt_nm: name,
                 addr: address || "주소 정보 없음",
-                tpkct: capacity, // 총 자리
-                now_prk_vhcl_cnt: 0, // 처음엔 0대로 시작
+                tpkct: capacity,
+                now_prk_vhcl_cnt: 0,
                 status: "운영중"
             };
-
-            // 기존 데이터에 새 주차장을 합쳐서 업데이트!
-            setData([newParking, ...data]); 
-            alert("새로운 주차장이 등록되었습니다!");
-        } else {
-            alert("이름과 총 대수는 꼭 입력해야 합니다.");
+            setData([newParking, ...data]);
+            alert("등록되었습니다!");
         }
     };
 
@@ -59,7 +83,6 @@ const StatCards = ({ data, setData }) => {
         <div className="admin-container">
             <h2 className="admin-title">등록된 주차장 관리</h2>
 
-            {/* 검색창 구역 */}
             <div className="search-wrapper">
                 <input 
                     className="search-input"
@@ -70,7 +93,6 @@ const StatCards = ({ data, setData }) => {
                 />
             </div>
 
-            {/* 카드 리스트 구역 */}
             <div className="card-grid">
                 {filteredData.map((parking) => {
                     const max = Number(parking.tpkct);
@@ -111,7 +133,8 @@ const StatCards = ({ data, setData }) => {
                             </div>
 
                             <div className="btn-group">
-                                <button className="edit-btn" onClick={() => alert("수정 버튼입니다.")}>수정</button>
+                                {/* 수정 버튼에 handleEdit 연결 */}
+                                <button className="edit-btn" onClick={() => handleEdit(parking.pklt_cd)}>수정</button>
                                 <button className="del-btn" onClick={() => handleDelete(parking.pklt_cd)}>삭제</button>
                             </div>
                         </div>
@@ -119,7 +142,6 @@ const StatCards = ({ data, setData }) => {
                 })}
             </div>
 
-            {/*추가 버튼 클릭 시 handleAdd 실행 */}
             <button className="add-btn-fixed" onClick={handleAdd}>
                 + 주차장 추가
             </button>
