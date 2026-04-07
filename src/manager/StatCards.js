@@ -68,6 +68,7 @@ const StatCards = ({ data, setData }) => {
                 />
             </div>
 
+            <div>
             {/* 현황 테이블 */}
             <table className="status-table">
                 <thead>
@@ -110,6 +111,7 @@ const StatCards = ({ data, setData }) => {
                 </tbody>
             </table>
         </div>
+    </div>
     );
 };
 
