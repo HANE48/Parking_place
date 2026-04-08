@@ -122,4 +122,5 @@ const SearchP = ({ data }) => {
     )
 }
 
+
 export default SearchP
