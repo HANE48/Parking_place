@@ -148,6 +148,11 @@ a {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+/* 포커스 시 약간 진해짐 */
+.main-search-input:focus {
+  border-color: #64748b; 
+}
+
 /* 테이블을 담는 하얀 박스 */
 .price-table-container {
   background-color: #ffffff;
@@ -357,10 +362,10 @@ a {
   outline: none;
 }
 
-/* 
+/* 포커스 시 약간 진해짐 */
 .parking-search-input:focus {
-  border-color: #64748b; /* 포커스 시 약간 진해짐 */
-/* } */
+  border-color: #64748b; 
+}
 
 /* 현황 테이블 */
 .status-table {
@@ -371,6 +376,12 @@ a {
   font-weight: bold;
   table-layout: fixed;
   /* 열 너비를 고정하여 헤더와 본문 위치를 강제로 맞춤 */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .status-table-wrapper {
@@ -394,6 +405,7 @@ a {
   font-weight: 600;
   font-size: 14px;
 }
+
 
 /* 데이터 셀 스타일 */
 .status-table td {
@@ -458,6 +470,16 @@ a {
 }
 
 .search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+/* .search-input {
   padding: 12px 25px;
   width: 300px;
   border-radius: 15px;
@@ -465,11 +487,11 @@ a {
   outline: none;
   font-size: 16px;
   transition: all 0.3s;
-}
+} */
 
+/* 포커스 시 약간 진해짐 */
 .search-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  border-color: #64748b; 
 }
 
 /* 카드 그리드 레이아웃 */
