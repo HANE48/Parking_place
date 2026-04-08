@@ -98,6 +98,7 @@ const ParkingTable = ({ data, setData }) => {
         <div className="parking-container">
             <h2 className="admin-title">등록된 주차장 관리</h2>
 
+            {/* 검색창 */}
             <div className="search-wrapper">
                 <input
                     className="search-input"
@@ -108,6 +109,7 @@ const ParkingTable = ({ data, setData }) => {
                 />
             </div>
 
+            {/* 주차장 카드그리드 */}
             <div className="card-grid">
                 {filteredData.map((parking) => {
                     const max = Number(parking.tpkct);
@@ -115,16 +117,16 @@ const ParkingTable = ({ data, setData }) => {
                     const isFull = cur >= max;
                     const isRepair = parking.status === "점검중";
 
-                    // --- [수정 구간 1] 백틱 대신 삼항 연산자로 변수 할당 ---
+                    // [색상설정] 상태에따라 테두리 색상 변경(점검, 만차, 정상운영)
                     let borderClass = "parking-card";
                     if (isRepair) borderClass += " border-repair";
                     else if (isFull) borderClass += " border-full";
                     else borderClass += " border-running";
 
-                    // --- [수정 구간 2] 배열의 join 메서드 활용 ---
+                    // 상태뱃지(점검중_회색, 운영중_녹색)
                     const badgeClass = ["status-badge", isRepair ? "bg-repair" : "bg-running"].join(" ");
 
-                    // --- [수정 구간 3] 변수로 클래스 미리 정의 ---
+                    // 주차숫자 강조 (만차일 때만 빨간색 적용)
                     const numberTextClass = isFull ? "number-text full-text" : "number-text";
 
                     return (
