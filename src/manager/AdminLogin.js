@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AdminLogin() {
+function AdminLogin({data}) {
   const [id, setId] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (id === "171730" || id === "admin") {
-      
+    if (data.pklt_cd === id || id === "admin") {
+      alert("로그인 성공");
       navigate("/manager/" + id + "/dashboard");
     } else {
       alert("아이디를 확인하세요.");
@@ -18,7 +18,7 @@ function AdminLogin() {
   return (
     <form onSubmit={handleLogin} style={{ padding: '50px', textAlign: 'center' }}>
       <h2>관리자 로그인</h2>
-      <input value={id} onChange={(e) => setId(e.target.value)} placeholder="아이디 입력(171730)" />
+      <input value={id} onChange={(e) => setId(e.target.value)} placeholder="아이디 입력" />
       <button type="submit">로그인</button>
     </form>
   );

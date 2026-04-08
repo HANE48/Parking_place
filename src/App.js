@@ -6,6 +6,8 @@ import ManagerMain from './manager/manager_main.js';
 import './App.css';
 import { useState } from 'react';
 import Parking_info from './Parking_info.json';
+
+
 function App() {
 
   const [data, setData] = useState(()=>{
@@ -36,7 +38,7 @@ function App() {
       </header>
       <Routes>
         <Route path="/*" element={<SearchP data={data} />} />
-        <Route path="/manager/login/*" element={<AdminLogin />} />
+        <Route path="/manager/login/*" element={<AdminLogin data={data}/>} />
         <Route path="/manager/:id/*" element={<ManagerMain data={data} setData={setData} />} />
       </Routes>
     </BrowserRouter>
