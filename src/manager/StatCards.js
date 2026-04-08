@@ -20,7 +20,7 @@ const StatCards = ({ data, setData }) => {
 
     // --- 입/출차 관리 함수 ---
     const handleUpdate = (id, change) => {
-        const newData = data.map(item => {
+        setData(prev => prev.map(item => {
             if (item.pklt_cd === id) {
                 const max = Number(item.tpkct);
                 let current = Math.min(Number(item.now_prk_vhcl_cnt), max);
@@ -35,8 +35,7 @@ const StatCards = ({ data, setData }) => {
                 }
             }
             return item;
-        });
-        setData(newData);
+        }));
     };
 
     return (

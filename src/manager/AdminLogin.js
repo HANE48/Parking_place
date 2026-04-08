@@ -18,11 +18,7 @@ function AdminLogin() {
   return (
     <form onSubmit={handleLogin} style={{ padding: '50px', textAlign: 'center' }}>
       <h2>관리자 로그인</h2>
-      <input 
-        value={id} 
-        onChange={(e) => setId(e.target.value)} 
-        placeholder="아이디 입력(171730)" 
-      />
+      <input value={id} onChange={(e) => setId(e.target.value)} placeholder="아이디 입력(171730)" />
       <button type="submit">로그인</button>
     </form>
   );

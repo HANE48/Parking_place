@@ -12,21 +12,20 @@ const ParkingTable = ({ data, setData }) => {
     // --- 2. 삭제 기능 ---
     const handleDelete = (id) => {
         if(window.confirm("정말로 이 주차장을 삭제할까요?")) {
-            const newData = data.filter(item => item.pklt_cd !== id);
-            setData(newData);
+            setData(prev => prev.filter(item => item.pklt_cd !== id));
+            alert("삭제되었습니다!");
         }
     };
 
     // --- 3. 상태 변경 기능 (운영중 ↔ 점검중) ---
     const toggleStatus = (id) => {
-        const newData = data.map(item => {
+        setData(prev => prev.map(item => {
             if (item.pklt_cd === id) {
                 const currentStatus = item.status || "운영중";
                 return { ...item, status: currentStatus === "운영중" ? "점검중" : "운영중" };
             }
             return item;
-        });
-        setData(newData);
+        }));
     };
 
     // --- 4. 수정 기능 (기존 정보 고치기) ---
@@ -41,7 +40,7 @@ const ParkingTable = ({ data, setData }) => {
         const newCap = prompt("수정할 총 주차 면수를 입력하세요:", target.tpkct);
 
         if (newName && newCap) {
-            const newData = data.map(item => {
+            setData(prev => prev.map(item => {
                 if (item.pklt_cd === id) {
                     // 찾은 녀석만 새 내용으로 덮어쓰기!
                     return { 
@@ -52,8 +51,7 @@ const ParkingTable = ({ data, setData }) => {
                     };
                 }
                 return item;
-            });
-            setData(newData);
+            }));
             alert("수정이 완료되었습니다!");
         }
     };
@@ -74,7 +72,7 @@ const ParkingTable = ({ data, setData }) => {
                 now_prk_vhcl_cnt: 0,
                 status: "운영중"
             };
-            setData([newParking, ...data]);
+            setData(prev => [newParking, ...prev]);
             alert("등록되었습니다!");
         }
     };
