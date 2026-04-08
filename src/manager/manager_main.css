@@ -611,3 +611,107 @@ a > span{
   cursor: pointer;
   font-weight: bold;
 }
+
+/* === 관리자 화면 style === */
+
+/* 전체 배경 화면 */
+.admin-login-container {
+  background-color: #f0f4f7;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 하얀색 로그인 카드 */
+.login-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* 상단 영역 */
+.login-header {
+  margin-bottom: 30px;
+}
+
+.robot-emoji {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+.login-title {
+  font-size: 24px;
+  color: #334155;
+  margin: 0;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* 폼 및 입력창 */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-left: 4px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: none;
+}
+
+/* 로그인 버튼 */
+.login-button {
+  background-color: #b8d1d9; /* 메인 배너 하늘색 */
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #a5c0c9; /* 마우스 올렸을 때 살짝 어둡게 */
+}
+
+/* 하단 링크 */
+.login-footer {
+  margin-top: 25px;
+}
+
+.back-home-link {
+  font-size: 13px;
+  color: #94a3b8;
+  cursor: pointer;
+  text-decoration: underline;
+}
