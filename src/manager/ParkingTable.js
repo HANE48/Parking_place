@@ -4,12 +4,10 @@ import './manager_main.css';
 const ParkingTable = ({ data, setData }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    // --- 1. 검색 필터링 ---
     const filteredData = data.filter(item => 
         item.pklt_nm.includes(searchTerm) || (item.addr && item.addr.includes(searchTerm))
     );
 
-    // --- 2. 삭제 기능 ---
     const handleDelete = (id) => {
         if(window.confirm("정말로 이 주차장을 삭제할까요?")) {
             const newData = data.filter(item => item.pklt_cd !== id);
@@ -17,7 +15,6 @@ const ParkingTable = ({ data, setData }) => {
         }
     };
 
-    // --- 3. 상태 변경 기능 (운영중 ↔ 점검중) ---
     const toggleStatus = (id) => {
         const newData = data.map(item => {
             if (item.pklt_cd === id) {
@@ -29,13 +26,10 @@ const ParkingTable = ({ data, setData }) => {
         setData(newData);
     };
 
-    // --- 4. 수정 기능 (기존 정보 고치기) ---
     const handleEdit = (id) => {
-        // 고칠 대상을 먼저 찾아요
         const target = data.find(item => item.pklt_cd === id);
         if (!target) return;
 
-        // 기존 내용을 보여주면서 새로 입력받기
         const newName = prompt("수정할 이름을 입력하세요:", target.pklt_nm);
         const newAddr = prompt("수정할 주소를 입력하세요:", target.addr);
         const newCap = prompt("수정할 총 주차 면수를 입력하세요:", target.tpkct);
@@ -43,13 +37,7 @@ const ParkingTable = ({ data, setData }) => {
         if (newName && newCap) {
             const newData = data.map(item => {
                 if (item.pklt_cd === id) {
-                    // 찾은 녀석만 새 내용으로 덮어쓰기!
-                    return { 
-                        ...item, 
-                        pklt_nm: newName, 
-                        addr: newAddr, 
-                        tpkct: newCap 
-                    };
+                    return { ...item, pklt_nm: newName, addr: newAddr, tpkct: newCap };
                 }
                 return item;
             });
@@ -58,7 +46,6 @@ const ParkingTable = ({ data, setData }) => {
         }
     };
 
-    // --- 5. 추가 기능 ---
     const handleAdd = () => {
         const name = prompt("새 주차장 이름을 입력하세요:");
         if (!name) return;
@@ -100,17 +87,27 @@ const ParkingTable = ({ data, setData }) => {
                     const isFull = cur >= max;
                     const isRepair = parking.status === "점검중";
 
-                    const borderClass = isRepair ? "border-repair" : (isFull ? "border-full" : "border-running");
+                    // --- [수정 구간 1] 백틱 대신 삼항 연산자로 변수 할당 ---
+                    let borderClass = "parking-card";
+                    if (isRepair) borderClass += " border-repair";
+                    else if (isFull) borderClass += " border-full";
+                    else borderClass += " border-running";
+
+                    // --- [수정 구간 2] 배열의 join 메서드 활용 ---
+                    const badgeClass = ["status-badge", isRepair ? "bg-repair" : "bg-running"].join(" ");
+                    
+                    // --- [수정 구간 3] 변수로 클래스 미리 정의 ---
+                    const numberTextClass = isFull ? "number-text full-text" : "number-text";
 
                     return (
-                        <div key={parking.pklt_cd} className={`parking-card ${borderClass}`}>
+                        <div key={parking.pklt_cd} className={borderClass}>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div>
                                     <strong style={{fontSize: '18px'}}>{parking.pklt_nm}</strong>
                                     <div className="label-text" style={{marginTop: '4px'}}>{parking.addr}</div>
                                 </div>
                                 <span 
-                                    className={`status-badge ${isRepair ? 'bg-repair' : 'bg-running'}`}
+                                    className={badgeClass}
                                     onClick={() => toggleStatus(parking.pklt_cd)}
                                 >
                                     {parking.status || "운영중"}
@@ -126,14 +123,13 @@ const ParkingTable = ({ data, setData }) => {
                                 </div>
                                 <div>
                                     <div className="label-text">현재 주차</div>
-                                    <div className={`number-text ${isFull ? 'full-text' : ''}`}>
+                                    <div className={numberTextClass}>
                                         {cur} {isFull && <span style={{fontSize: '12px'}}> (만차)</span>}
                                     </div>
                                 </div>
                             </div>
 
                             <div className="btn-group">
-                                {/* 수정 버튼에 handleEdit 연결 */}
                                 <button className="edit-btn" onClick={() => handleEdit(parking.pklt_cd)}>수정</button>
                                 <button className="del-btn" onClick={() => handleDelete(parking.pklt_cd)}>삭제</button>
                             </div>
