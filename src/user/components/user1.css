@@ -1,0 +1,63 @@
+*{padding: 0; margin: 0; list-style: none;}
+
+.div{
+    width: 550px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.name{
+    text-align: center;
+    font-size: 25px;
+    color: lightblue;
+    font-weight: bold;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+
+.content{
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+a{ text-decoration:none; }
+
+/*상세정보*/
+
+.Ddiv{
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.Dname{
+    text-align: center;
+    font-size: 25px;
+    color: lightblue;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-table{
+    border: 1px solid black;
+    text-align: center;
+    margin: auto;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.info-table td{
+    width: 460px;
+    padding: 15px;
+    text-align: center;
+}
+
+.info-table th{
+    width: 460px;
+    padding: 10px;
+    text-align: center;
+    background-color: lightblue;
+    color: black;
+}
