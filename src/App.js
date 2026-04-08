@@ -3,19 +3,14 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Parking_info from './Parking_info.json';
+import SearchP from './user/components/SearchP.js';
 
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Link to='/'>유저창</Link>
-        <br/>
-        <Link to='/manager'>관리자창</Link>
-        <Routes>
-          <Route path='/' element={<div><p>검색</p></div>} />
-          <Route path='/manager' element={<Login />} />
-        </Routes>
+        <SearchP/>
       </div>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ import './User2.css';
 import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
 import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
-import sp from ".././img/sp.png";
+import final_sp from ".././img/final_sp.png";
 import Parking2 from "../img/Parking2.png";
 
 const SearchP = ()=>{
@@ -23,7 +23,7 @@ const SearchP = ()=>{
     const [addr, setAddr] = useState('')
 
     //원하는 지역의 주차장 리스트 저장하는 list변수
-    const [list, setList] = useState([])
+    const [list, setList] = useState([])s
 
     const [buttons, setButtons] = useState(false)
 
@@ -57,25 +57,26 @@ const SearchP = ()=>{
 
         <div className="main-box">
             <div>
-                <img src={sp} 
+                <img src={final_sp} 
                 style={{width : '938.98px',
                         height : '862.99'}}/>              
             </div>
 
-            <div className="search-space">
-                <input 
-                        value={addr}
-                        onChange={(e)=>{setAddr(e.target.value)}}
-                        placeholder="지역명을 입력하세요(구/도로명)"/>
-            
-                <button onClick={checkList} className="find">
-                    <img src={search_pic_removebg_preview}
-                        style={{width : '30px',
-                                height : '30px', 
-                                mixBlendMode: 'multiply'}}/>
-                </button>
+            <div className="inputSection">
+                <div className="search-space">
+                    <input 
+                            value={addr}
+                            onChange={(e)=>{setAddr(e.target.value)}}
+                            placeholder="지역명을 입력하세요(구/도로명)"/>
+                
+                    <button onClick={checkList} className="find">
+                        <img src={search_pic_removebg_preview}
+                            style={{width : '30px',
+                                    height : '30px', 
+                                    mixBlendMode: 'multiply'}}/>
+                    </button>
+                </div>
             </div>
-            
 
             {/* 사용자가 이미 지역을 검색했는가? y : n */}
             { buttons ?
