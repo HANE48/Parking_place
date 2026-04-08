@@ -53,7 +53,7 @@ const SearchP = ({ data }) => {
     }
 
     const toMain = ()=>{
-        setList([])
+        // setList([])
         setIsSearched(false)
         navigate('/')
     }
