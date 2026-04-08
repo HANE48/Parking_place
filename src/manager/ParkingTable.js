@@ -95,6 +95,7 @@ const ParkingTable = ({ data, setData }) => {
         <div className="parking-container">
             <h2 className="admin-title">등록된 주차장 관리</h2>
 
+            {/* 검색창 */}
             <div className="search-wrapper">
                 <input
                     className="search-input"
@@ -105,6 +106,7 @@ const ParkingTable = ({ data, setData }) => {
                 />
             </div>
 
+            {/* 주차장 카드그리드 */}
             <div className="card-grid">
                 {filteredData.map((parking) => {
                     const max = Number(parking.tpkct);
@@ -112,16 +114,17 @@ const ParkingTable = ({ data, setData }) => {
                     const isFull = cur >= max;
                     const isRepair = parking.status === "점검중";
 
-                    // --- [수정 구간 1] 백틱 대신 삼항 연산자로 변수 할당 ---
+                    // [색상설정] 상태에따라 테두리 색상 변경(점검, 만차, 정상운영)
                     let borderClass = "parking-card";
                     if (isRepair) borderClass += " border-repair";
                     else if (isFull) borderClass += " border-full";
                     else borderClass += " border-running";
 
-                    // --- [수정 구간 2] 배열의 join 메서드 활용 ---
+                    // 상태뱃지(점검중_회색, 운영중_녹색)
                     const badgeClass = ["status-badge", isRepair ? "bg-repair" : "bg-running"].join(" ");
 
-                    // --- [수정 구간 3] 변수로 클래스 미리 정의 ---
+                    // 주차숫자 강조 (만차일 때만 빨간색 적용)
+                    // [비주얼 설정] 만차(isFull)가 되면 기본 숫자 디자인에 '빨간색 강조(full-text)'를 추가
                     const numberTextClass = isFull ? "number-text full-text" : "number-text";
 
                     return (
@@ -129,18 +132,19 @@ const ParkingTable = ({ data, setData }) => {
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <div>
                                     <strong style={{ fontSize: '18px' }}>{parking.pklt_nm}</strong>
+                                    {/*  카드 상단: 이름, 주소, 상태 뱃지 */}
                                     <div className="label-text" style={{ marginTop: '4px' }}>{parking.addr}</div>
                                 </div>
                                 <span
                                     className={badgeClass}
-                                    onClick={() => toggleStatus(parking.pklt_cd)}
+                                    onClick={() => toggleStatus(parking.pklt_cd)}//클릭시 상태바뀜
                                 >
                                     {parking.status || "운영중"}
                                 </span>
                             </div>
 
                             <hr style={{ border: 'none', borderBottom: '1px solid #eee', margin: '15px 0' }} />
-
+                            {/* 카드 중앙 : 주차 대수 현황 */}
                             <div style={{ display: 'flex', justifyContent: 'space-around', textAlign: 'center' }}>
                                 <div>
                                     <div className="label-text">총 주차면</div>
@@ -153,7 +157,7 @@ const ParkingTable = ({ data, setData }) => {
                                     </div>
                                 </div>
                             </div>
-
+                            {/* 카드 하단 : 수정/삭제 버튼 */}
                             <div className="btn-group">
                                 <button className="edit-btn" onClick={() => handleEdit(parking.pklt_cd)}>수정</button>
                                 <button className="del-btn" onClick={() => handleDelete(parking.pklt_cd)}>삭제</button>
@@ -162,7 +166,7 @@ const ParkingTable = ({ data, setData }) => {
                     );
                 })}
             </div>
-
+            {/* 화면 하단 : 고정된 '+주차장 추가' 버튼 */}
             <button className="add-btn-fixed" onClick={handleAdd}>
                 + 주차장 추가
             </button>
