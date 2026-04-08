@@ -51,28 +51,34 @@ const ParkingTable = ({ data, setData }) => {
 
     //[기능4: 추가] 새로운 주차장 정보를 입력 받아 목록 제일 앞에 배치
     const handleAdd = () => {
+        // 1. 이름 입력 (취소 시 종료)
         const name = prompt("새 주차장 이름을 입력하세요");
         if (!name) return;
 
-        if (name && capacity) {
-            const newParking = {
-                pklt_cd: Date.now().toString(),
-                pklt_nm: name,
-                addr: address || "주소 정보 없음",
-                tpkct: capacity,
-                now_prk_vhcl_cnt: 0,
-                status: "운영중"
-            };
-            setData(prev => [newParking, ...prev]);
-            alert("등록되었습니다!");
+        // 2. 주소 입력
+        const address = prompt("주차장 주소를 입력하세요");
+
+        // 3. 주차 가능 대수 숫자 입력 및 검증
+        let inputCapacity;
+        while (true) {
+            inputCapacity = prompt("총 주차 가능 대수를 숫자로 입력하세요");
+
+            // 취소 버튼 누르면 종료
+            if (inputCapacity === null) return;
+
+            // 숫자인지 검사 (빈칸 아니고, 숫자인 경우)
+            if (inputCapacity.trim() !== "" && !isNaN(inputCapacity)) {
+                break; 
+            }
+
+            alert("잘못된 입력입니다. '숫자'로만 다시 입력해주세요!");
         }
 
-        // 반복문을 빠져나왔다는 건 확실히 숫자라는 뜻!
         const capacity = Number(inputCapacity);
-        // ----------------------------------------
 
+        // 4. 모든 데이터가 준비된 후 객체 생성
         const newParking = {
-            pklt_cd: Date.now().toString(),
+            pklt_cd: Date.now().toString(), // 고유 ID 생성
             pklt_nm: name,
             addr: address || "주소 정보 없음",
             tpkct: capacity,
@@ -80,7 +86,8 @@ const ParkingTable = ({ data, setData }) => {
             status: "운영중"
         };
 
-        setData([newParking, ...data]);
+        // 5. 상태 업데이트 (기존 데이터 앞에 추가)
+        setData(prev => [newParking, ...prev]);
         alert("등록되었습니다!");
     };
 
