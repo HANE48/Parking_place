@@ -7,7 +7,16 @@ function AdminLogin({data}) {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (data.pklt_cd === id || id === "admin") {
+    const idchk = () =>{
+      for(let i=0; i<data.length; i++){
+        if(data[i].pklt_cd === id){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    if ( idchk || id === "admin") {
       alert("로그인 성공");
       navigate("/manager/" + id + "/dashboard");
     } else {
