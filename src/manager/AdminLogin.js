@@ -30,7 +30,7 @@ function AdminLogin({data}) {
       <div className="login-card">
         
         <div className="login-header">
-          <div className="robot-emoji">🤖</div>
+          <div className="robot-emoji">🅿️</div>
           <h2 className="login-title">관리자 로그인</h2>
           <p className="login-subtitle">내안의 서울 P 관리 시스템</p>
         </div>
