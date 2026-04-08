@@ -3,8 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Parking_info from './Parking_info.json';
-import SearchP from './user/components/SearchP.js';
-
+import SearchP from './user/components/SearchP';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function Login(){
       <p>로그인 화면</p>
     </div>
   );
-
 }
 
 

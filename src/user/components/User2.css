@@ -38,7 +38,7 @@ a {
 
 /* 4. 검색창 섹션 */
 .inputSection {
-    margin-top: -50px; /* 배너와 겹침 효과 */
+    margin-top: -36px; /* 배너와 겹침 효과 */
     width: 100%;
     max-width: 700px;
     padding: 0 20px;
