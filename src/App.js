@@ -7,6 +7,9 @@ import './App.css';
 import { useState } from 'react';
 import Parking_info from './Parking_info.json';
 
+import { useState, useEffect } from 'react';
+import Parking_info from './Parking_info.json';
+import SearchP from './user/components/SearchP';
 
 function App() {
 
@@ -44,5 +47,14 @@ function App() {
     </BrowserRouter>
   );
 }
+
+function Login(){
+  return(
+    <div>
+      <p>로그인 화면</p>
+    </div>
+  );
+}
+
 
 export default App;
