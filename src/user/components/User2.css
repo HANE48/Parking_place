@@ -166,7 +166,7 @@ a {
 
 /* 7. 기타 */
 li:hover {
-    ransform: translate3d(-15px, 0, 0); 
+    transform: translate3d(-15px, 0, 0); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
