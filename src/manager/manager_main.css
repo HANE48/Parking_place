@@ -99,7 +99,7 @@ a > span{
 
 .logout-btn:hover {
   background-color: #e2e8f0;
-  /* 호버 시 약간 회색으로 */
+  /* 마우스 올리면 약간 회색으로 바뀜 */
 }
 
 /* 본문 */
