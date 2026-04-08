@@ -53,7 +53,7 @@ const StatCards = ({ data, setData }) => {
                 </div>
                 <div className="stat-card">
                     <span className="stat-label">현재 주차 차량</span>
-                    <div className="stat-value" style={{ color: '#d9534f' }}>{totalParked} <small>대</small></div>
+                    <div className="stat-value" style={{ color: '#f04a45' }}>{totalParked} <small>대</small></div>
                 </div>
             </div>
 

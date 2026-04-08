@@ -53,17 +53,17 @@ const ParkingTable = ({ data, setData }) => {
 
     //[기능4: 추가] 새로운 주차장 정보를 입력 받아 목록 제일 앞에 배치
     const handleAdd = () => {
-        const name = prompt("새 주차장 이름을 입력하세요:");
+        const name = prompt("새 주차장 이름을 입력하세요");
         if (!name) return;
 
-        const address = prompt("주차장 주소를 입력하세요:");
+        const address = prompt("주차장 주소를 입력하세요");
 
-        // --- [숫자 입력 구간] ---
+        // --- [주차가능 대수 숫자 입력] ---
         let inputCapacity;
 
         // "숫자가 아니면 계속 다시 물어봐!" (while 반복문)
         while (true) {
-            inputCapacity = prompt("총 주차 가능 대수를 입력하세요 (숫자만):");
+            inputCapacity = prompt("총 주차 가능 대수를 숫자로 입력하세요");
 
             // 사용자가 '취소'를 눌렀을 때를 대비한 탈출 장치
             if (inputCapacity === null) return;
@@ -79,7 +79,7 @@ const ParkingTable = ({ data, setData }) => {
 
         // 반복문을 빠져나왔다는 건 확실히 숫자라는 뜻!
         const capacity = Number(inputCapacity);
-        // --------------------------------
+        // ----------------------------------------
 
         const newParking = {
             pklt_cd: Date.now().toString(),
