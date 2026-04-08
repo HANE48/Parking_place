@@ -11,6 +11,7 @@ import EmptyList from "./EmptyList";
 import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
 import final_sp from ".././img/final_sp.png";
 import Parking2 from "../img/Parking2.png";
+import MonthlyParking from "./MonthlyParking";
 
 const SearchP = ()=>{
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
