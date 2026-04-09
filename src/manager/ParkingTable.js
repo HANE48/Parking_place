@@ -89,7 +89,7 @@ const ParkingTable = ({ data, setData }) => {
         // 5. 상태 업데이트 (기존 데이터 앞에 추가)
         setData(prev => [newParking, ...prev]);
         alert("등록되었습니다!");
-    };
+    }; //handleAdd
 
     return (
         <div className="parking-container">
@@ -171,7 +171,7 @@ const ParkingTable = ({ data, setData }) => {
                 + 주차장 추가
             </button>
         </div>
-    );
+    );//return
 };
 
 export default ParkingTable;

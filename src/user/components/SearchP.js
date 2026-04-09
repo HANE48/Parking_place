@@ -53,37 +53,33 @@ const SearchP = ({ data }) => {
 
     }
 
-    const toMain = ()=>{
+    const toMain = () => {
         setAddr('')
         setIsSearched(false)
         navigate('/')
     }
 
-    return(
+    return (
 
         <div className="main-box">
             <div>
-                <a onClick={()=>{toMain()}} style={{cursor : 'pointer'}}
-                            alt="Seoul Parking Banner">
-                    <img src={final_sp} 
-                    style={{width : '938.98px',
-                        height : '862.99'}}/>
-                </a>              
+                <a onClick={() => { toMain() }} style={{ cursor: 'pointer' }} alt="Seoul Parking Banner">
+                    <img src={final_sp} style={{ width: '938.98px', height: '862.99' }} />
+                </a>
             </div>
 
             <div className="inputSection">
                 <div className="search-space">
-                    <input 
-                            value={addr}
-                            onChange={(e)=>{setAddr(e.target.value)}}
-                            placeholder="지역명을 입력하세요(구/도로명)"/>
-                
+                    <input value={addr} onChange={(e) => { setAddr(e.target.value) }} placeholder="지역명을 입력하세요(구/도로명)" />
+
                     <button onClick={checkList} className="find">
                         <img src={search_pic_removebg_preview}
                             alt="Main Parking Image"
-                            style={{width : '30px',
-                                    height : '30px', 
-                                    mixBlendMode: 'multiply'}}/>
+                            style={{
+                                width: '30px',
+                                height: '30px',
+                                mixBlendMode: 'multiply'
+                            }} />
                     </button>
                 </div>
             </div>
@@ -107,17 +103,13 @@ const SearchP = ({ data }) => {
                     <Route path="/search" element={<AddressList list={list} />} />
                     <Route path="/detail/:id" element={<Detail list={list} />} />
                     {/* 유저가 한 번이라도 "찾기" 버튼을 눌렀다면 EmptyList를 출력하지 않게 함. */}
-                    <Route path="/" element={ 
-                        isSearched ? (
-                            <NoResult message={searchError} /> 
-                        ) : (
-                            <EmptyList />
-                        )
-                    }/>
+                    <Route path="/" element={isSearched ?
+                        (<NoResult message={searchError} />)
+                        : (<EmptyList />)} />
                 </Routes>
 
             </div>
-            
+
         </div>
     )
 }

@@ -14,7 +14,7 @@ const StatCards = ({ data, setData }) => {
         const maxCnt = Number(cur.tpkct || 0);
         return acc + Math.min(curCnt, maxCnt); //만약 현재 차량수가 전체 대수보다 초과입력될 경우, 최대치까지만 인정(데이터 보정)
     }, 0);//합계를 0부터 시작함
-
+    
     //3. 전체 주차 여유 공간 (전체 주차 가능 공간 - 총 주차된 차량)
     const totalAvailable = totalCapacity - totalParked;
 
@@ -103,9 +103,7 @@ const StatCards = ({ data, setData }) => {
                                     </td>
                                     <td>
                                         {/* [혼잡도 표시] 90%이상 빨강(혼잡), 50%이상 주황(보통), 그외 초록(여유) */}
-                                        <div className="status-light" style={{
-                                            backgroundColor: ratio >= 90 ? 'red' : ratio >= 50 ? 'orange' : 'green'
-                                        }}>
+                                        <div className="status-light" style={{ backgroundColor: ratio >= 90 ? 'red' : ratio >= 50 ? 'orange' : 'green'}}>
                                             {ratio >= 90 ? '혼잡' : ratio >= 50 ? '보통' : '여유'}
                                         </div>
                                     </td>

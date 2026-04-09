@@ -41,16 +41,8 @@ function App() {
         <Route path="/manager/:id/*" element={<ManagerMain data={data} setData={setData} />} />
       </Routes>
     </BrowserRouter>
-  );
-}
-
-function Login(){
-  return(
-    <div>
-      <p>로그인 화면</p>
-    </div>
-  );
-}
+  );//return
+}//app
 
 
 export default App;

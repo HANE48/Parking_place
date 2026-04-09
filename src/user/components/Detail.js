@@ -12,13 +12,19 @@ const Detail = ({list})=>{
     } )
 
     const showList = choosedItem.map( (res) =>{
-
+        // 평일 오픈시간
         let DayOpenHr = res.wd_oper_bgng_tm.slice(0, 2);
         let DayOpenMin = res.wd_oper_bgng_tm.slice(2, 4);
+
+        // 평일 마감 시간
         let DayEndHr = res.we_oper_end_tm.slice(0, 2);
         let DayEndMin = res.we_oper_end_tm.slice(2, 4);
+
+        // 주말 오픈 시간
         let WeekOpenHr = res.we_oper_bgng_tm.slice(0, 2);
         let WeekOpenMin = res.we_oper_bgng_tm.slice(2,4);
+
+        // 주말 마감 시간
         let WeekEndHr = res.we_oper_end_tm.slice(0, 2);
         let WeekEndMin = res.we_oper_end_tm.slice(2, 4);
         
