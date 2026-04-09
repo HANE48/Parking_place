@@ -300,3 +300,138 @@ li:hover {
         transform: translateY(-5px);
     }
 }
+
+.no-result-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 60px 40px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+}
+
+/* 2. 레이아웃 엔진 (Grid 사용) */
+.no-result-content {
+    display: grid;
+    /* 넓은 화면: 왼쪽엔 이미지 영역(img), 오른쪽엔 텍스트 영역(txt) */
+    grid-template-columns: 1fr 1.2fr; 
+    grid-template-areas: 
+        "img title"
+        "img subtext"
+        "img tips";
+    align-items: center;
+    column-gap: 60px;
+    row-gap: 10px;
+}
+
+/* 3. 각 요소에 영역(Area) 할당 */
+.illustration-wrapper {
+    grid-area: img; /* 왼쪽 이미지 영역 점유 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-result-text {
+    grid-area: title; /* 오른쪽 첫 번째 줄 */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: left;
+}
+
+.no-result-subtext {
+    grid-area: subtext; /* 오른쪽 두 번째 줄 */
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: black !important;
+    margin: 0;
+    text-align: left;
+}
+
+.search-tips {
+    grid-area: tips; /* 오른쪽 세 번째 줄 */
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* 4. 일러스트 및 칩 스타일 */
+.no-result-img {
+    width: 100%;
+    max-width: 260px; 
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    animation: float-noresult 3s ease-in-out infinite;
+}
+
+.ghost-shadow {
+    width: 130px;
+    height: 12px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    margin-top: 15px;
+    filter: blur(4px);
+}
+
+.tip-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.chip {
+    background: #f8f9fa;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: black;
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.chip:hover {
+    border-color: #007bff;
+    color: #007bff;
+    transform: translateY(-3px);
+}
+
+/* 5. 반응형 대응 (화면이 좁아질 때) */
+@media (max-width: 900px) {
+    .no-result-content {
+        /* 세로로 한 줄씩 쌓이도록 변경 */
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "title"
+            "subtext"
+            "tips"
+            "img"; /* 문구가 위쪽, 일러스트가 아래쪽 */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .no-result-text, 
+    .no-result-subtext, 
+    .search-tips {
+        text-align: center;
+    }
+
+    .tip-chips {
+        justify-content: center;
+    }
+
+    .illustration-wrapper {
+        margin-top: 20px;
+    }
+}
+
+/* 6. 둥둥 떠다니는 효과 */
+@keyframes float-noresult {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
