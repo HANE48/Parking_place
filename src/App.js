@@ -11,6 +11,7 @@ function App() {
 
   const [data, setData] = useState(()=>{
     const saved = localStorage.getItem('ParkingData');
+    //JSON.parse(saved) --> saved를 JSON형태로 변환
     return saved ? JSON.parse(saved) : Parking_info.DATA;
   });
 
