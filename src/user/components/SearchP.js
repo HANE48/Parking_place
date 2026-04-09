@@ -7,8 +7,8 @@ import SizeList from "./SizeList";
 import './User2.css';
 import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
-import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
-import final_sp from ".././img/final_sp.png";
+import search_pic_removebg_preview from "../img/search_pic_removebg_preview.png";
+import final_sp from "../img/final_sp.png";
 import NoResult from "./NoResult";
 
 const SearchP = ({ data }) => {
@@ -47,7 +47,7 @@ const SearchP = ({ data }) => {
 
         setButtons(true)
         navigate('/search');
-        // setAddr('')
+        // setAddr('') <-- 이거 있으면 경로 넘어가고 addr 값에 있던게 사라져서 지웠어요!
 
     }
 
@@ -71,13 +71,7 @@ const SearchP = ({ data }) => {
                     <input value={addr} onChange={(e) => { setAddr(e.target.value) }} placeholder="지역명을 입력하세요(구/도로명)" />
 
                     <button onClick={checkList} className="find">
-                        <img src={search_pic_removebg_preview}
-                            alt="Main Parking Image"
-                            style={{
-                                width: '30px',
-                                height: '30px',
-                                mixBlendMode: 'multiply'
-                            }} />
+                        <img src={search_pic_removebg_preview} alt="Main Parking Image" style={{width: '30px',height: '30px',mixBlendMode: 'multiply'}} />
                     </button>
                 </div>
             </div>
