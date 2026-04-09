@@ -7,10 +7,6 @@ import './App.css';
 import { useState } from 'react';
 import Parking_info from './Parking_info.json';
 
-import { useState, useEffect } from 'react';
-import Parking_info from './Parking_info.json';
-import SearchP from './user/components/SearchP';
-
 function App() {
 
   const [data, setData] = useState(()=>{
