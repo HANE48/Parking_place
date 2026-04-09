@@ -30,15 +30,15 @@ function ManagerMain(props) {
   let viewTitle = `${myParkingName} 통합 주차 관리`;
 
   if (currentView === 'dashboard') {
-    viewTitle = `${myParkingName} 현황`;
+    viewTitle = {myParkingName} + '현황';
   } else if (currentView === 'list') {
-    viewTitle = `${myParkingName}`;
+    viewTitle = {myParkingName};
   } else if (currentView === 'price') {
-    viewTitle = `${myParkingName} 요금 정책 관리`;
+    viewTitle = {myParkingName} + '요금 정책 관리';
   } else if (currentView === 'time') {
-    viewTitle = `${myParkingName} 운영 시간 관리`;
+    viewTitle = {myParkingName} + '운영 시간 관리';
   } else if (currentView === 'admin') {
-    viewTitle = id === 'admin' ? "시스템 통합 설정" : `${myParkingName} 관리자 정보`;
+    viewTitle = id === 'admin' ? "시스템 통합 설정" : '${myParkingName} 관리자 정보';
   }
 
   const handleViewChange = (viewName) => {
