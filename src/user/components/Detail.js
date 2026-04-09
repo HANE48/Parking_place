@@ -17,8 +17,8 @@ const Detail = ({list})=>{
         let DayOpenMin = res.wd_oper_bgng_tm.slice(2, 4);
 
         // 평일 마감 시간
-        let DayEndHr = res.we_oper_end_tm.slice(0, 2);
-        let DayEndMin = res.we_oper_end_tm.slice(2, 4);
+        let DayEndHr = res.wd_oper_end_tm.slice(0, 2);
+        let DayEndMin = res.wd_oper_end_tm.slice(2, 4);
 
         // 주말 오픈 시간
         let WeekOpenHr = res.we_oper_bgng_tm.slice(0, 2);
