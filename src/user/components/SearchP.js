@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Parking_info from "../../Parking_info.json";
-import { href, Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import PriceList from "./PriceList";
 import LotsList from "./LotsList";
 import Detail from "./Detail";
@@ -10,7 +9,6 @@ import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
 import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
 import final_sp from ".././img/final_sp.png";
-import Parking2 from "../img/Parking2.png";
 import NoResult from "./NoResult";
 
 const SearchP = ({ data }) => {
@@ -49,7 +47,7 @@ const SearchP = ({ data }) => {
 
         setButtons(true)
         navigate('/search');
-        setAddr('')
+        // setAddr('')
 
     }
 
