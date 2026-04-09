@@ -33,7 +33,7 @@ const SearchP = ({ data }) => {
         setIsSearched(true);
         setSearchError('')
         setButtons(false)
-
+        
         if (!addr.trim()) {
             setSearchError('지역명을 입력해주세요')
             navigate('/');
@@ -42,6 +42,9 @@ const SearchP = ({ data }) => {
 
         if (list.length === 0) {
             setSearchError('검색 결과가 없습니다')
+            // 검색결과는 없는데 리스트 이름은 계속 나와서 초기로 돌아가 검색결과가 없습니다로 표기하게 바꿨어요!
+            setIsSearched(true);
+            navigate('/');
             return;
         }
 
@@ -68,7 +71,7 @@ const SearchP = ({ data }) => {
 
             <div className="inputSection">
                 <div className="search-space">
-                    <input value={addr} onChange={(e) => { setAddr(e.target.value) }} placeholder="지역명을 입력하세요(구/도로명)" />
+                    <input value={addr} onChange={(e) => {setAddr(e.target.value) }} placeholder="지역명을 입력하세요(구/도로명)" />
 
                     <button onClick={checkList} className="find">
                         <img src={search_pic_removebg_preview} alt="Main Parking Image" style={{width: '30px',height: '30px',mixBlendMode: 'multiply'}} />
