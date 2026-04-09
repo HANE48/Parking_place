@@ -7,9 +7,8 @@ import ParkingPriceTable from './ParkingPriceTable.js';
 import ParkingData from './ParkingData';
 import StatCards from './StatCards.js';
 import ParkingHours from './ParkingHours.js';
-import SearchP from '../user/components/SearchP.js';
 
-function ManagerMain(props) {
+function ManagerMain() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,8 +17,13 @@ function ManagerMain(props) {
   const currentView = pathParts[pathParts.length - 1] || 'dashboard';
 
   // id가 admin이 아닐경우 id에 맞는 데이터만 가져오도록 변경
-  const data = id === 'admin' ? props.data : props.data.filter(item => item.pklt_cd === Number(id));
-
+  const [data, setData] = useState(() => {
+    if (id === 'admin') {
+      return ParkingData.DATA;
+    } else {
+      return ParkingData.DATA.filter((res, i) => res.pklt_cd === Number(id));
+    }
+  });
 
   // 주차장명칭 추출
   const myParkingName = (id !== 'admin' && data.length > 0)
@@ -27,18 +31,18 @@ function ManagerMain(props) {
     : "서울시 전체";
 
   // 제목 결정 로직
-  let viewTitle = `${myParkingName} 통합 주차 관리`;
+  let viewTitle = myParkingName + " 통합 주차 관리";
 
   if (currentView === 'dashboard') {
-    viewTitle = `${myParkingName} 현황`;
+    viewTitle = myParkingName + " 현황";
   } else if (currentView === 'list') {
-    viewTitle = `${myParkingName}`;
+    viewTitle = myParkingName;
   } else if (currentView === 'price') {
-    viewTitle = `${myParkingName} 요금 정책 관리`;
+    viewTitle = myParkingName + " 요금 정책 관리";
   } else if (currentView === 'time') {
-    viewTitle = `${myParkingName} 운영 시간 관리`;
+    viewTitle = myParkingName + " 운영 시간 관리";
   } else if (currentView === 'admin') {
-    viewTitle = id === 'admin' ? "시스템 통합 설정" : `${myParkingName} 관리자 정보`;
+    viewTitle = (id === 'admin') ? "시스템 통합 설정" : myParkingName + " 관리자 정보";
   }
 
   const handleViewChange = (viewName) => {
@@ -70,13 +74,13 @@ function ManagerMain(props) {
               <div className="admin-summary-bar">
                 <h4>현재 관리 중인 서울시 주차장: {data.length}개</h4>
               </div>
-              <ParkingTable data={data} setData={props.setData} />
+              <ParkingTable data={data} setData={setData} />
             </div>
           )}
 
           {currentView === 'list' && (
             <div className="content-box">
-              <StatCards data={data} setData={props.setData} />
+              <StatCards data={data} setData={setData} />
             </div>
           )}
 
@@ -89,7 +93,7 @@ function ManagerMain(props) {
 
           {currentView === 'time' && (
             <div className="content-box">
-              <ParkingHours data={data} setData={props.setData} />
+              <ParkingHours data={data} setData={setData} />
             </div>
           )}
 
@@ -111,7 +115,6 @@ function ManagerMain(props) {
               </div>
             </div>
           )}
-
         </section>
       </main>
     </div>
