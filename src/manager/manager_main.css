@@ -239,7 +239,7 @@ a > span{
 .admin-setting-box {
   margin-top: 20px;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 8px;
   background-color: #fff;
 }
@@ -247,6 +247,7 @@ a > span{
 .admin-info-text {
   margin-bottom: 10px;
   font-size: 16px;
+  color:#000000
 }
 
 .admin-divider {
@@ -715,3 +716,5 @@ a > span{
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* === 운영시간 === */
