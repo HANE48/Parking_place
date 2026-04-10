@@ -17,10 +17,10 @@ const ParkingTable = ({ data, setData }) => {
     const handleDelete = (id) => {
         if(window.confirm("정말로 이 주차장을 삭제할까요?")) {
             if(pId.id != 'admin'){
-                alert('주차장 삭제는 통합관리자에게 문의하세요! \n 전화번호: 02-OOOO-OOOO');
+                alert('주차장 삭제는 통합관리자에게 문의하세요! \n 전화번호: 02-OOO-OOOO');
             }else{
                 setData(prev => prev.filter(item => item.pklt_cd !== id));
-            alert("삭제되었습니다!");
+                alert("삭제되었습니다!");
             }
             
         }
