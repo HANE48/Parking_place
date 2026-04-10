@@ -12,7 +12,7 @@ const SizeList = ({list})=>{
 
     return(
         <div className="div">
-            <h2 className="name">주차장 규모</h2> 
+            <h2 className="name">주차장 규모</h2>  
             <ul>
             {
                 sortedSizeList.map((item)=>{
