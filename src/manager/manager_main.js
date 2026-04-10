@@ -20,25 +20,23 @@ function ManagerMain(props) {
   // id가 admin이 아닐경우 id에 맞는 데이터만 가져오도록 변경
   const data = id === 'admin' ? props.data : props.data.filter(item => item.pklt_cd === Number(id));
 
-
   // 주차장명칭 추출
   const myParkingName = (id !== 'admin' && data.length > 0)
-    ? data[0].pklt_nm
-    : "서울시 전체";
+    ? data[0].pklt_nm : "서울시 전체";
 
   // 제목 결정 로직
-  let viewTitle = `${myParkingName} 통합 주차 관리`;
+  let viewTitle = myParkingName + '통합 주차 관리';
 
   if (currentView === 'dashboard') {
-    viewTitle = `${myParkingName} 현황`;
+    viewTitle =  myParkingName  + '현황';
   } else if (currentView === 'list') {
-    viewTitle = `${myParkingName}`;
+    viewTitle =  myParkingName ;
   } else if (currentView === 'price') {
-    viewTitle = `${myParkingName} 요금 정책 관리`;
+    viewTitle =  myParkingName  + '요금 정책 관리';
   } else if (currentView === 'time') {
-    viewTitle = `${myParkingName} 운영 시간 관리`;
+    viewTitle =  myParkingName  + '운영 시간 관리';
   } else if (currentView === 'admin') {
-    viewTitle = id === 'admin' ? "시스템 통합 설정" : `${myParkingName} 관리자 정보`;
+    viewTitle = id === 'admin' ? "시스템 통합 설정" : myParkingName + '관리자 정보';
   }
 
   const handleViewChange = (viewName) => {

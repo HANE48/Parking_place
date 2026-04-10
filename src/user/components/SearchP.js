@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Parking_info from "../../Parking_info.json";
-import { href, Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import PriceList from "./PriceList";
 import LotsList from "./LotsList";
 import Detail from "./Detail";
@@ -8,9 +7,9 @@ import SizeList from "./SizeList";
 import './User2.css';
 import AddressList from "./AddressList";
 import EmptyList from "./EmptyList";
-import search_pic_removebg_preview from ".././img/search_pic_removebg_preview.png";
-import final_sp from ".././img/final_sp.png";
-import Parking2 from "../img/Parking2.png";
+import search_pic_removebg_preview from "../img/search_pic_removebg_preview.png";
+import final_sp from "../img/final_sp.png";
+import NoResult from "./NoResult";
 
 const SearchP = ({ data }) => {
     // 유효성 검사 통과시 링크로 이동할 수 있게하는 useNavigate();
@@ -34,7 +33,7 @@ const SearchP = ({ data }) => {
         setIsSearched(true);
         setSearchError('')
         setButtons(false)
-
+        
         if (!addr.trim()) {
             setSearchError('지역명을 입력해주세요')
             navigate('/');
@@ -43,46 +42,39 @@ const SearchP = ({ data }) => {
 
         if (list.length === 0) {
             setSearchError('검색 결과가 없습니다')
+            // 검색결과는 없는데 리스트 이름은 계속 나와서 초기로 돌아가 검색결과가 없습니다로 표기하게 바꿨어요!
+            setIsSearched(true);
+            navigate('/');
             return;
         }
 
         setButtons(true)
         navigate('/search');
-        setAddr('')
+        // setAddr('') <-- 이거 있으면 경로 넘어가고 addr 값에 있던게 사라져서 지웠어요!
 
     }
 
-    const toMain = ()=>{
-        // setList([])
+    const toMain = () => {
+        setAddr('')
         setIsSearched(false)
         navigate('/')
     }
 
-    return(
+    return (
 
         <div className="main-box">
             <div>
-                <a onClick={()=>{toMain()}} style={{cursor : 'pointer'}}
-                            alt="Seoul Parking Banner">
-                    <img src={final_sp} 
-                    style={{width : '938.98px',
-                        height : '862.99'}}/>
-                </a>              
+                <a onClick={() => { toMain() }} style={{ cursor: 'pointer' }} alt="Seoul Parking Banner">
+                    <img src={final_sp} style={{ width: '938.98px', height: '862.99' }} />
+                </a>
             </div>
 
             <div className="inputSection">
                 <div className="search-space">
-                    <input 
-                            value={addr}
-                            onChange={(e)=>{setAddr(e.target.value)}}
-                            placeholder="지역명을 입력하세요(구/도로명)"/>
-                
+                    <input value={addr} onChange={(e) => {setAddr(e.target.value) }} placeholder="지역명을 입력하세요(구/도로명)" />
+
                     <button onClick={checkList} className="find">
-                        <img src={search_pic_removebg_preview}
-                            alt="Main Parking Image"
-                            style={{width : '30px',
-                                    height : '30px', 
-                                    mixBlendMode: 'multiply'}}/>
+                        <img src={search_pic_removebg_preview} alt="Main Parking Image" style={{width: '30px',height: '30px',mixBlendMode: 'multiply'}} />
                     </button>
                 </div>
             </div>
@@ -106,14 +98,16 @@ const SearchP = ({ data }) => {
                     <Route path="/search" element={<AddressList list={list} />} />
                     <Route path="/detail/:id" element={<Detail list={list} />} />
                     {/* 유저가 한 번이라도 "찾기" 버튼을 눌렀다면 EmptyList를 출력하지 않게 함. */}
-                    <Route path="/" element={ isSearched? 
-                            <div className="errorMsg">{searchError} <img className="mainImg" src={Parking2}/></div> : <EmptyList/>}/>
+                    <Route path="/" element={isSearched ?
+                        (<NoResult message={searchError} />)
+                        : (<EmptyList />)} />
                 </Routes>
 
             </div>
-            
+
         </div>
     )
 }
+
 
 export default SearchP

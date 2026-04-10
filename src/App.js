@@ -6,10 +6,12 @@ import ManagerMain from './manager/manager_main.js';
 import './App.css';
 import { useState } from 'react';
 import Parking_info from './Parking_info.json';
+
 function App() {
 
   const [data, setData] = useState(()=>{
     const saved = localStorage.getItem('ParkingData');
+    //JSON.parse(saved) --> saved를 JSON형태로 변환
     return saved ? JSON.parse(saved) : Parking_info.DATA;
   });
 
@@ -36,11 +38,12 @@ function App() {
       </header>
       <Routes>
         <Route path="/*" element={<SearchP data={data} />} />
-        <Route path="/manager/login/*" element={<AdminLogin />} />
+        <Route path="/manager/login/*" element={<AdminLogin data={data}/>} />
         <Route path="/manager/:id/*" element={<ManagerMain data={data} setData={setData} />} />
       </Routes>
     </BrowserRouter>
-  );
-}
+  );//return
+}//app
+
 
 export default App;

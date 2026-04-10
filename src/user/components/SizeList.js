@@ -7,7 +7,7 @@ const SizeList = ({list})=>{
         const sizeA = Number(a.tpkct)
         const SizeB = Number(b.tpkct)
 
-        return(SizeB-sizeA)
+        return (SizeB-sizeA);
     })
 
     return(
@@ -16,9 +16,7 @@ const SizeList = ({list})=>{
             <ul>
             {
                 sortedSizeList.map((item)=>{
-
                     const sizeP = Number(item.tpkct)
-
                     return(
                         <Link to={'/detail/' + item.pklt_cd }>
                             <li className="content">
@@ -27,12 +25,9 @@ const SizeList = ({list})=>{
                             </li>
                         </Link>
                     )
-                
                } ) 
-                
             }
             </ul>
-
         </div>
     )
 }

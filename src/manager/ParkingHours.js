@@ -54,10 +54,6 @@ const ParkingHours = ({ data, setData }) => {
             <h2 className="admin-title">
                 {id === 'admin' ? "서울시 통합 운영 시간 관리" : "주차장 운영 시간 설정"}
             </h2>
-            
-            <p className="admin-subtitle">
-                현재 관리 권한: <strong>{adminAuthority}</strong>
-            </p>
 
             <div className="card-grid">
                 {data.map((parking) => {

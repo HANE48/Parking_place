@@ -99,7 +99,7 @@ a > span{
 
 .logout-btn:hover {
   background-color: #e2e8f0;
-  /* 호버 시 약간 회색으로 */
+  /* 마우스 올리면 약간 회색으로 바뀜 */
 }
 
 /* 본문 */
@@ -150,6 +150,11 @@ a > span{
   background-color: #ffffff;
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 포커스 시 약간 진해짐 */
+.main-search-input:focus {
+  border-color: #64748b; 
 }
 
 /* 테이블을 담는 하얀 박스 */
@@ -234,7 +239,7 @@ a > span{
 .admin-setting-box {
   margin-top: 20px;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 8px;
   background-color: #fff;
 }
@@ -242,6 +247,7 @@ a > span{
 .admin-info-text {
   margin-bottom: 10px;
   font-size: 16px;
+  color:#000000
 }
 
 .admin-divider {
@@ -361,27 +367,37 @@ a > span{
   outline: none;
 }
 
-/* 
+/* 포커스 시 약간 진해짐 */
 .parking-search-input:focus {
-  border-color: #64748b; /* 포커스 시 약간 진해짐 */
-/* } */
+  border-color: #64748b; 
+}
 
 /* 현황 테이블 */
 .status-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin-top: 0;
+  /* wrapper 내부이므로 상단 여백 제거 */
+  font-weight: bold;
+  table-layout: fixed;
+  /* 열 너비를 고정하여 헤더와 본문 위치를 강제로 맞춤 */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .status-table-wrapper {
-  /* ParkingTable.js에서 <table>을 <div>로 한 번 감싸주는 것이 좋습니다 */
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  margin-top: 20px;
 }
 
-/* 현황 테이블 헤더 수정 */
+/* 현황 테이블 헤더 스타일*/
 .status-table thead tr {
   background-color: #f8fafc;
   border-bottom: 2px solid #e2e8f0;
@@ -389,23 +405,25 @@ a > span{
 
 .status-table th {
   color: #64748b;
-  padding: 16px 15px;
+  padding: 18px 15px;
   /* 기본 패딩 */
   font-weight: 600;
-  text-align: center;
-  /* 기본은 중앙 */
+  font-size: 14px;
 }
 
-/* 테이블 바닥 선도 연하게 */
+
+/* 데이터 셀 스타일 */
 .status-table td {
   padding: 16px 15px;
   border-bottom: 1px solid #f1f5f9;
   vertical-align: middle;
-  /* 세로 중앙 정렬 */
+  font-size: 14px;
+  color: #334155;
+  text-align: center;
 }
 
 .text-left {
-  text-align: left !important;
+  text-align: left;
 }
 
 /* 혼잡도 표시등 */
@@ -457,6 +475,16 @@ a > span{
 }
 
 .search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+/* .search-input {
   padding: 12px 25px;
   width: 300px;
   border-radius: 15px;
@@ -464,11 +492,11 @@ a > span{
   outline: none;
   font-size: 16px;
   transition: all 0.3s;
-}
+} */
 
+/* 포커스 시 약간 진해짐 */
 .search-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+  border-color: #64748b; 
 }
 
 /* 카드 그리드 레이아웃 */
@@ -584,3 +612,109 @@ a > span{
   cursor: pointer;
   font-weight: bold;
 }
+
+/* === 관리자 화면 style === */
+
+/* 전체 배경 화면 */
+.admin-login-container {
+  background-color: #f0f4f7;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 하얀색 로그인 카드 */
+.login-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* 상단 영역 */
+.login-header {
+  margin-bottom: 30px;
+}
+
+.robot-emoji {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+.login-title {
+  font-size: 24px;
+  color: #334155;
+  margin: 0;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* 폼 및 입력창 */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-left: 4px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: none;
+}
+
+/* 로그인 버튼 */
+.login-button {
+  background-color: #b8d1d9; /* 메인 배너 하늘색 */
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #a5c0c9; /* 마우스 올렸을 때 살짝 어둡게 */
+}
+
+/* 하단 링크 */
+.login-footer {
+  margin-top: 25px;
+}
+
+.back-home-link {
+  font-size: 13px;
+  color: #94a3b8;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* === 운영시간 === */
