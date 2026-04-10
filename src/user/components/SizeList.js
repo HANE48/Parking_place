@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 const SizeList = ({list})=>{
 
     const sortedSizeList = [...list].sort((a, b) => {
-        const sizeA = Number(a.tpkct)
-        const SizeB = Number(b.tpkct)
-
-        return (SizeB-sizeA);
+        return Number(b.tpkct) - Number(a.tpkct);
     })
 
     return(
