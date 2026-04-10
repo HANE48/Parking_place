@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './manager_main.css';
+import { useParams } from 'react-router-dom';
 
 const ParkingTable = ({ data, setData }) => {
+
+    const pId = useParams();
+
     //[상태관리] 검색창에 입력한 텍스트 저장하는 곳
     const [searchTerm, setSearchTerm] = useState('');
     //[데이터 필터링] 검색창에 주차장명이나 주소에 포함된 것만 골라냄
@@ -12,18 +16,23 @@ const ParkingTable = ({ data, setData }) => {
     //[기능1: 삭제] 특정 주차장을 목록에서 제거
     const handleDelete = (id) => {
         if(window.confirm("정말로 이 주차장을 삭제할까요?")) {
-            setData(prev => prev.filter(item => item.pklt_cd !== id));
-            alert("삭제되었습니다!");
+            if(pId.id != 'admin'){
+                alert('주차장 삭제는 통합관리자에게 문의하세요! \n 전화번호: 02-OOO-OOOO');
+            }else{
+                setData(prev => prev.filter(item => item.pklt_cd !== id));
+                alert("삭제되었습니다!");
+            }
+            
         }
     };
 
-    //[기능2: 운영중 ↔ 점검중 상태토글] 
+    //[기능2: 운영중 ↔ 영업종료 상태토글] 
     const toggleStatus = (id) => {
         setData(prev => prev.map(item => {
             if (item.pklt_cd === id) {
                 const currentStatus = item.status || "운영중";
                 // 상태를 반전시켜서 반환
-                return { ...item, status: currentStatus === "운영중" ? "점검중" : "운영중" };
+                return { ...item, status: currentStatus === "운영중" ? "영업종료" : "운영중" };
             }
             return item;
         }));
@@ -112,7 +121,7 @@ const ParkingTable = ({ data, setData }) => {
                     const max = Number(parking.tpkct);
                     const cur = Math.min(Number(parking.now_prk_vhcl_cnt), max);
                     const isFull = cur >= max;
-                    const isRepair = parking.status === "점검중";
+                    const isRepair = parking.status === "영업종료";
 
                     // [색상설정] 상태에따라 테두리 색상 변경(점검, 만차, 정상운영)
                     let borderClass = "parking-card";

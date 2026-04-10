@@ -6,18 +6,18 @@ function AdminLogin({data}) {
   const [id, setId] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const idchk = () =>{
+  const idchk = () =>{
       for(let i=0; i<data.length; i++){
-        if(data[i].pklt_cd === id){
+        if(data[i].pklt_cd === Number(id.trim())){
           return true;
         }
       }
       return false;
-    }
-
-    if ( idchk || id === "admin") {
+  }
+  
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if ( idchk() || id.trim() === "admin") {
       alert("로그인 성공");
       navigate("/manager/" + id + "/dashboard");
     } else {
