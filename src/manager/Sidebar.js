@@ -3,8 +3,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 
 function Sidebar(props) {
   const { id } = useParams();
-  const navigate = useNavigate(); //이동을 위한 navigate함수 선언
-
+  const navigate = useNavigate(); //페이지 강제이동을 위한 navigate함수 선언
+  // 부모 컴포넌트로 부터 화면전환 기능 물려받음
   const currentView = props.currentView;
   const setCurrentView = props.setCurrentView;
 
