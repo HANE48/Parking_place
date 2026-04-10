@@ -26,7 +26,7 @@ const ParkingTable = ({ data, setData }) => {
         }
     };
 
-    //[기능2: 운영중 ↔ 점검중 상태토글] 
+    //[기능2: 운영중 ↔ 영업종료 상태토글] 
     const toggleStatus = (id) => {
         setData(prev => prev.map(item => {
             if (item.pklt_cd === id) {
