@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './manager_main.css';
+import { useParams } from 'react-router-dom';
 
 const ParkingTable = ({ data, setData }) => {
+
+    const pId = useParams();
+
     //[상태관리] 검색창에 입력한 텍스트 저장하는 곳
     const [searchTerm, setSearchTerm] = useState('');
     //[데이터 필터링] 검색창에 주차장명이나 주소에 포함된 것만 골라냄
@@ -12,8 +16,13 @@ const ParkingTable = ({ data, setData }) => {
     //[기능1: 삭제] 특정 주차장을 목록에서 제거
     const handleDelete = (id) => {
         if(window.confirm("정말로 이 주차장을 삭제할까요?")) {
-            setData(prev => prev.filter(item => item.pklt_cd !== id));
+            if(pId.id != 'admin'){
+                alert('주차장 삭제는 통합관리자에게 문의하세요! \n 전화번호: 02-OOOO-OOOO');
+            }else{
+                setData(prev => prev.filter(item => item.pklt_cd !== id));
             alert("삭제되었습니다!");
+            }
+            
         }
     };
 
