@@ -32,7 +32,7 @@ const ParkingTable = ({ data, setData }) => {
             if (item.pklt_cd === id) {
                 const currentStatus = item.status || "운영중";
                 // 상태를 반전시켜서 반환
-                return { ...item, status: currentStatus === "운영중" ? "점검중" : "운영중" };
+                return { ...item, status: currentStatus === "운영중" ? "영업종료" : "운영중" };
             }
             return item;
         }));
@@ -121,7 +121,7 @@ const ParkingTable = ({ data, setData }) => {
                     const max = Number(parking.tpkct);
                     const cur = Math.min(Number(parking.now_prk_vhcl_cnt), max);
                     const isFull = cur >= max;
-                    const isRepair = parking.status === "점검중";
+                    const isRepair = parking.status === "영업종료";
 
                     // [색상설정] 상태에따라 테두리 색상 변경(점검, 만차, 정상운영)
                     let borderClass = "parking-card";
