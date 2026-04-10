@@ -73,7 +73,7 @@ function Sidebar(props) {
           </li>
 
           <li
-            className={currentView === 'settings' ? 'nav-item active' : 'nav-item'}
+            className={currentView === 'time' ? 'nav-item active' : 'nav-item'}
             onClick={function () { setCurrentView('time'); }}>
             <Link to='/manager/:id/time'>
               <span className="nav-icon">🕒</span>

@@ -4,10 +4,8 @@ import './manager_main.css';
 import Sidebar from './Sidebar.js';
 import ParkingTable from './ParkingTable.js';
 import ParkingPriceTable from './ParkingPriceTable.js';
-import ParkingData from './ParkingData';
 import StatCards from './StatCards.js';
 import ParkingHours from './ParkingHours.js';
-import SearchP from '../user/components/SearchP.js';
 
 function ManagerMain(props) {
   const { id } = useParams();
