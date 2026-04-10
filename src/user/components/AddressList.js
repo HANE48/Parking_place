@@ -4,9 +4,10 @@ import "./user1.css";
 
 const AddressList = ({list})=>{
 
-    const newList = [...list].sort(( a, b )=> {
-        return a.pklt_nm.localeCompare(b.pklt_nm);
-    })
+    //가나다 순으로 주차장 리스트 정렬
+    const newList = [...list].sort( (a, b)=>{
+        return a.pklt_nm.localeCompare( b.pklt_nm )
+    } )
 
     return(
         <div className="div">
