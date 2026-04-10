@@ -4,18 +4,6 @@ import { useParams } from 'react-router-dom';
 const ParkingHours = ({ data, setData }) => {
     const { id } = useParams();
 
-    // 관리 권한 문구 결정 
-    let adminAuthority = "";
-    if (id === 'admin') {
-        adminAuthority = "서울시 전 구역";
-    } else {
-        if (data.length > 0) {
-            adminAuthority = data[0].pklt_nm;
-        } else {
-            adminAuthority = "관리 구역(" + id + ")";
-        }
-    }
-
     // 1. 운영시간 수정 기능
     const handleTimeEdit = (targetId) => {
         let target = null;
