@@ -3,8 +3,6 @@
 --------------------------------------------------------------------------------------------------------------
 PPT 링크: https://www.tooldi.com/preview/MzI3NDE0NTE2OTg=
 --------------------------------------------------------------------------------------------------------------
-프로젝트 진행 상황은 진행상황_기록 파일에 기록되어있습니다.
-
 
 # 🚗 Parking Place (실시간 주차 관리 시스템)
 
@@ -60,7 +58,9 @@ PPT 링크: https://www.tooldi.com/preview/MzI3NDE0NTE2OTg=
 ### 4-1. 화면 구성 및 주요 기능
 | 사용자 뷰 (User View) | 관리자 뷰 (Manager View) |
 | :---: | :---: |
-| ![user_view](👉이미지_링크_입력👈) | ![manager_view](👉이미지_링크_입력👈) |
+| ![user_view] <img width="2475" height="1614" alt="image" src="https://github.com/user-attachments/assets/623845cc-2f41-47ef-afc5-82c69704b299" />
+ | ![manager_view] <img width="2498" height="1371" alt="image" src="https://github.com/user-attachments/assets/b37a4abf-a9f7-4977-818c-25949b68a876" />
+ |
 
 - **역할 기반 라우팅(Role-based Routing):** 사용자(User)와 관리자(Manager)의 접근 권한을 분리하여 맞춤형 인터페이스를 제공함.
 - **실시간 주차 현황 맵(Real-time Status Map):** 주차장 도면을 웹 UI로 구현하여, 사용 중인 자리와 빈자리를 직관적인 색상(ex. Red/Green)으로 렌더링함.
@@ -83,4 +83,4 @@ PPT 링크: https://www.tooldi.com/preview/MzI3NDE0NTE2OTg=
 - **배운 점:** 컴포넌트 분리 기준과 상태(State)를 어디에 위치시킬지에 대한 설계가 프론트엔드 성능 최적화에 직결됨을 깊이 이해함.
 
 ---
-*Created by [권우현, 이혜지, 이효경, 장승연, 조라헬/HANE48] | 2026*
+*Created by [권우현, 이혜지, 이효경, 장승연, 조라헬/HANE48, H-JEE1216, 911carpediem, seungyeon8802, rahellyberry] | 2026*
