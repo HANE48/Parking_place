@@ -58,9 +58,7 @@ PPT 링크: https://www.tooldi.com/preview/MzI3NDE0NTE2OTg=
 ### 4-1. 화면 구성 및 주요 기능
 | 사용자 뷰 (User View) | 관리자 뷰 (Manager View) |
 | :---: | :---: |
-| ![user_view] <img width="2475" height="1614" alt="image" src="https://github.com/user-attachments/assets/623845cc-2f41-47ef-afc5-82c69704b299" />
- | ![manager_view] <img width="2498" height="1371" alt="image" src="https://github.com/user-attachments/assets/b37a4abf-a9f7-4977-818c-25949b68a876" />
- |
+| <img width="2475" height="1614" alt="image" src="https://github.com/user-attachments/assets/623845cc-2f41-47ef-afc5-82c69704b299" />|  <img width="2498" height="1371" alt="image" src="https://github.com/user-attachments/assets/b37a4abf-a9f7-4977-818c-25949b68a876" />|
 
 - **역할 기반 라우팅(Role-based Routing):** 사용자(User)와 관리자(Manager)의 접근 권한을 분리하여 맞춤형 인터페이스를 제공함.
 - **실시간 주차 현황 맵(Real-time Status Map):** 주차장 도면을 웹 UI로 구현하여, 사용 중인 자리와 빈자리를 직관적인 색상(ex. Red/Green)으로 렌더링함.
